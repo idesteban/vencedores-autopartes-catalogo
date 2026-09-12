@@ -406,3 +406,57 @@ footer strong { color: var(--text); }
   margin-top: 2rem;
   padding-top: .25rem;
 }
+
+
+/* Mill photo — no stretch, high quality */
+.mill-photo-card { margin: 0 0 1.5rem; overflow: hidden; }
+.mill-photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #0a0a0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mill-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* full image, no crop/distort */
+  object-position: center;
+}
+.mill-caption {
+  padding: .85rem 1rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+/* Downloads */
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 860px) {
+  .downloads-grid { grid-template-columns: 1fr; }
+}
+.download-card {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  padding: 1.25rem;
+  transition: border-color .2s, transform .2s;
+}
+.download-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.download-kicker { color: var(--amber); font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.download-meta { color: var(--muted); font-size: .9rem; margin-bottom: .5rem; }
+.download-card .btn { align-self: flex-start; margin-top: auto; }
+
+.wa-number-lg {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--wa);
+  letter-spacing: .02em;
+}
+.wa-primary-line { margin: 1rem 0 .5rem; }
+.wa-secondary-line { color: var(--muted); font-size: .95rem; }
+.wa-secondary-line a { text-decoration: underline; text-underline-offset: 3px; }
