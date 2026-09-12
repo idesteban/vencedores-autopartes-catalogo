@@ -460,3 +460,10 @@ footer strong { color: var(--text); }
 .wa-primary-line { margin: 1rem 0 .5rem; }
 .wa-secondary-line { color: var(--muted); font-size: .95rem; }
 .wa-secondary-line a { text-decoration: underline; text-underline-offset: 3px; }
+
+.nav-logo img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 10px;
+}
