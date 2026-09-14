@@ -337,8 +337,8 @@
     const img =
       p.image && !p.placeholder
         ? '<img src="' +
-          escapeHtml(p.image) +
-          '" alt="' +
+          escapeHtml(assetUrl(p.image)) +
+          '" alt="'
           escapeHtml(p.title) +
           '" loading="lazy">'
         : '<div class="thumb-placeholder"><span>Foto en catálogo PDF</span><a class="pdf-link" href="assets/descargas/catalogo-vencedor-completo.pdf" download onclick="event.stopPropagation()">Descargar PDF</a></div>';
@@ -418,8 +418,8 @@
     const imgHtml = p.placeholder
       ? '<div class="thumb-placeholder detail-ph"><span>Foto en catálogo PDF</span><a class="btn btn-ghost btn-sm" href="assets/descargas/catalogo-vencedor-completo.pdf" download>Descargar PDF</a></div>'
       : '<img src="' +
-        escapeHtml(p.image) +
-        '" alt="' +
+        escapeHtml(assetUrl(p.image)) +
+        '" alt="'
         escapeHtml(p.title) +
         '" data-zoom>';
     el.body.innerHTML =
@@ -453,7 +453,7 @@
     const zoom = el.body.querySelector("[data-zoom]");
     if (zoom) {
       zoom.addEventListener("click", function () {
-        openLightbox(p.image, p.title);
+        openLightbox(assetUrl(p.image), p.title);
       });
     }
     const backBtn = document.getElementById("detailBackProducts");

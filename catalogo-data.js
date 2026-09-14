@@ -369,7 +369,7 @@
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P002",
     "description": "Universal. Hyundai: Atos, Accent, Elantra, Genesis, i30, Santa Fe, Tucson; entre otros.",
-    "image": "assets/productos/p002.png",
+    "image": "assets/productos/p002-20260914.png",
     "pdfPage": 11,
     "fits": [
       {
@@ -404,7 +404,7 @@
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P003",
     "description": "Universal. Renault Twingo; R19; Clio 1990–2009; Espace J11.",
-    "image": "assets/productos/p003.png",
+    "image": "assets/productos/p003-20260914.png",
     "pdfPage": 12,
     "fits": [
       {
@@ -616,7 +616,7 @@
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P008",
     "description": "Universal. Nissan Frontier/Navara/NP300; Toyota Hilux/Prado/Fortuner/Land Cruiser/4Runner. Evidencia LISTADO_PEDALES + INR NP300 Frontier.",
-    "image": "assets/productos/p008.png",
+    "image": "assets/productos/p008-20260914.png",
     "pdfPage": 17,
     "fits": [
       {
@@ -699,7 +699,7 @@
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P010",
     "description": "Universal. Camiones de estaca Chevrolet NKR, NQR, NPR, NNR; entre otros.",
-    "image": "assets/productos/p010.png",
+    "image": "assets/productos/p010-20260914.png",
     "pdfPage": 19,
     "fits": [
       {
