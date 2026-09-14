@@ -104,6 +104,29 @@
     );
   }
 
+  
+  function renderBarExtras() {
+    const bar = document.querySelector(".funnel-bar");
+    if (!bar) return;
+    let wrap = document.getElementById("funnelBarShortcuts");
+    if (!wrap) {
+      wrap = document.createElement("div");
+      wrap.id = "funnelBarShortcuts";
+      wrap.className = "funnel-bar-shortcuts";
+      const crumbs = document.getElementById("funnelCrumbs");
+      if (crumbs && crumbs.parentNode) crumbs.parentNode.insertBefore(wrap, crumbs.nextSibling);
+      else bar.prepend(wrap);
+    }
+    if (state.step === "brands" || state.step === "products") {
+      wrap.innerHTML = shortcutChipsHtml();
+      wrap.hidden = false;
+      bindShortcuts(wrap);
+    } else {
+      wrap.innerHTML = "";
+      wrap.hidden = true;
+    }
+  }
+
   function bindShortcuts(root) {
     (root || document).querySelectorAll("[data-type-shortcut]").forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -423,6 +446,7 @@
 
   function render() {
     renderCrumbs();
+    renderBarExtras();
     if (state.step === "brands") renderBrands();
     else if (state.step === "lines") renderLines();
     else if (state.step === "types") renderTypes();
