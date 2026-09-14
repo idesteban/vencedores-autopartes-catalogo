@@ -1,4 +1,4 @@
-// cache 20260914h
+// cache 20260914i
 /**
  * Vencedores Autopartes — embudo marca → línea → tipo → producto
  * brandLines: INR Catalogodepartes.pdf 2025 (no encoger).
@@ -62,6 +62,24 @@
     "name": "Renault",
     "monogram": "R",
     "logo": "assets/marcas/renault.png"
+  },
+  {
+    "id": "mitsubishi",
+    "name": "Mitsubishi",
+    "monogram": "M",
+    "logo": "assets/marcas/mitsubishi.png"
+  },
+  {
+    "id": "ford",
+    "name": "Ford",
+    "monogram": "F",
+    "logo": "assets/marcas/ford.png"
+  },
+  {
+    "id": "suzuki",
+    "name": "Suzuki",
+    "monogram": "S",
+    "logo": "assets/marcas/suzuki.png"
   }
 ],
     types: [
@@ -266,6 +284,33 @@
     "X-Trail",
     "Xterra",
     "Sunny"
+  ],
+  "mitsubishi": [
+    "Colt",
+    "Lancer",
+    "L200",
+    "L200 Advancer",
+    "L200 Sportero",
+    "L300",
+    "Montero",
+    "Nativa",
+    "Outlander"
+  ],
+  "ford": [
+    "EcoSport",
+    "Edge",
+    "Escape",
+    "Explorer",
+    "Festiva",
+    "Fiesta",
+    "Fusion",
+    "Laser",
+    "Ranger"
+  ],
+  "suzuki": [
+    "Grand Vitara",
+    "Jimny",
+    "Swift"
   ]
 },
     products: [
