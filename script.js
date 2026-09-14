@@ -522,12 +522,17 @@
   const toggle = document.getElementById("navToggle");
   const links = document.getElementById("navLinks");
   if (toggle && links) {
+    function setNavOpen(open) {
+      links.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    }
     toggle.addEventListener("click", function () {
-      links.classList.toggle("open");
+      setNavOpen(!links.classList.contains("open"));
     });
     links.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
-        links.classList.remove("open");
+        setNavOpen(false);
       });
     });
   }

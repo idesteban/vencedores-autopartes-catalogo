@@ -66,6 +66,20 @@ a:hover { text-decoration: underline; }
   color: #fff; border-radius: 8px; padding: .4rem .65rem; font-weight: 700;
 }
 
+.nav-actions {
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: .55rem .85rem; flex-wrap: wrap;
+}
+.nav-quick {
+  display: none; list-style: none; margin: 0; padding: 0;
+  align-items: center; gap: .35rem .85rem;
+}
+.nav-quick a {
+  color: #fff; font-weight: 600; font-size: .92rem; opacity: .92;
+  white-space: nowrap;
+}
+.nav-quick a:hover { opacity: 1; text-decoration: underline; }
+
 /* SECTIONS */
 .section { padding: 2.75rem 0; }
 .section.alt { background: var(--white); }
@@ -354,12 +368,34 @@ footer .container {
   .detail, .contact-box { grid-template-columns: 1fr; }
   .nav-logo-img,
   .brand-lockup img { height: 56px; max-height: 56px; }
-  .nav-toggle { display: inline-block; }
+  .nav-inner {
+    flex-wrap: nowrap; gap: .5rem;
+  }
+  .nav-actions {
+    flex: 1; min-width: 0;
+    justify-content: flex-end; flex-wrap: nowrap; gap: .45rem .65rem;
+  }
+  .nav-quick {
+    display: flex; flex-wrap: nowrap; gap: .35rem .7rem;
+  }
+  .nav-quick a { font-size: .82rem; }
+  .nav-logo-plate {
+    height: 48px !important; max-height: 48px !important;
+    max-width: min(160px, 38vw) !important;
+    padding: 3px 6px;
+  }
+  .nav-toggle { display: inline-block; flex-shrink: 0; }
   .nav-links {
-    display: none; width: 100%; flex-direction: column; padding: .5rem 0 .8rem;
+    display: none; width: 100%; flex-basis: 100%;
+    flex-direction: column; gap: .55rem;
+    padding: .65rem 0 .85rem;
+    border-top: 1px solid rgba(255,255,255,.18);
+    margin-top: .35rem;
   }
   .nav-links.open { display: flex; }
+  .nav-desktop-only { display: none; }
   .nav-inner { flex-wrap: wrap; }
+  .nav-actions:has(.nav-links.open) { flex-wrap: wrap; }
 }
 
 
