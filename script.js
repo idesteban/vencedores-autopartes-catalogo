@@ -1,11 +1,19 @@
 /**
  * Embudo misma pestaña: marca → línea → tipo → grilla → ficha
+ * Atajos: Pedales / Guardapolvos / Bujes / Fuelles
  */
 (function () {
   const C = window.VA_CATALOG;
   if (!C) return;
 
-  const state = { step: "brands", brand: null, line: null, type: null, product: null };
+  const state = {
+    step: "brands",
+    brand: null,
+    line: null,
+    type: null,
+    product: null,
+    typeFirst: null, // when set, browsing by type across brands
+  };
   const el = {
     body: document.getElementById("funnelBody"),
     crumbs: document.getElementById("funnelCrumbs"),
@@ -25,13 +33,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function productsByType(typeId) {
+    return (C.products || []).filter(function (p) {
+      return p.type === typeId;
+    });
+  }
+
   function go(step, patch) {
     Object.assign(state, patch || {});
     state.step = step;
     if (step === "brands") {
       state.brand = state.line = state.type = state.product = null;
+      state.typeFirst = null;
     } else if (step === "lines") {
       state.line = state.type = state.product = null;
+      state.typeFirst = null;
     } else if (step === "types") {
       state.type = state.product = null;
     } else if (step === "products") {
@@ -44,36 +60,105 @@
     }
   }
 
-  function renderCrumbs() {
-    const parts = [];
-    parts.push(crumb("Marcas", "brands", state.step === "brands"));
-    if (state.brand) {
-      const b = C.getBrand(state.brand);
-      parts.push('<span class="crumb-sep">›</span>');
-      parts.push(crumb(b ? b.name : state.brand, "lines", state.step === "lines"));
+  function startTypeFirst(typeId) {
+    if (typeId === "bujes") {
+      const mezclas = document.getElementById("mezclas");
+      if (mezclas) mezclas.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
     }
-    if (state.line) {
-      parts.push('<span class="crumb-sep">›</span>');
-      parts.push(crumb(state.line, "types", state.step === "types"));
-    }
-    if (state.type) {
-      const t = C.getType(state.type);
-      parts.push('<span class="crumb-sep">›</span>');
-      parts.push(crumb(t ? t.name : state.type, "products", state.step === "products"));
-    }
-    if (state.product) {
-      const p = C.getProduct(state.product);
-      parts.push('<span class="crumb-sep">›</span>');
-      parts.push(crumb(p ? p.ref : "Ficha", "detail", true));
-    }
-    el.crumbs.innerHTML = parts.join("");
-    el.crumbs.querySelectorAll("[data-go]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const step = btn.getAttribute("data-go");
-        go(step);
+    state.typeFirst = typeId;
+    state.brand = null;
+    state.line = null;
+    state.type = typeId;
+    state.product = null;
+    state.step = "products";
+    render();
+    const tienda = document.getElementById("tienda");
+    if (tienda) tienda.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function shortcutChipsHtml() {
+    const chips = [
+      { id: "pedales", label: "PEDALES" },
+      { id: "guardapolvos", label: "GUARDAPOLVOS" },
+      { id: "bujes", label: "BUJES" },
+      { id: "fuelles", label: "FUELLES" },
+    ];
+    return (
+      '<div class="type-shortcuts" role="group" aria-label="Atajos por tipo">' +
+      chips
+        .map(function (c) {
+          const active = state.typeFirst === c.id || (state.step === "products" && state.type === c.id && !state.brand);
+          return (
+            '<button type="button" class="type-chip' +
+            (active ? " active" : "") +
+            '" data-type-shortcut="' +
+            c.id +
+            '">' +
+            escapeHtml(c.label) +
+            "</button>"
+          );
+        })
+        .join("") +
+      "</div>"
+    );
+  }
+
+  function bindShortcuts(root) {
+    (root || document).querySelectorAll("[data-type-shortcut]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        startTypeFirst(btn.getAttribute("data-type-shortcut"));
       });
     });
-    el.back.hidden = state.step === "brands";
+  }
+
+  function renderCrumbs() {
+    const parts = [];
+    parts.push(crumb("Marcas", "brands", state.step === "brands" && !state.typeFirst));
+    if (state.typeFirst) {
+      const t = C.getType(state.typeFirst);
+      parts.push('<span class="crumb-sep">›</span>');
+      parts.push(
+        '<button type="button" class="crumb active" data-type-shortcut="' +
+          state.typeFirst +
+          '">' +
+          escapeHtml(t ? t.name : state.typeFirst) +
+          " (todas las marcas)</button>"
+      );
+      if (state.product) {
+        const p = C.getProduct(state.product);
+        parts.push('<span class="crumb-sep">›</span>');
+        parts.push(crumb(p ? p.ref : "Ficha", "detail", true));
+      }
+    } else {
+      if (state.brand) {
+        const b = C.getBrand(state.brand);
+        parts.push('<span class="crumb-sep">›</span>');
+        parts.push(crumb(b ? b.name : state.brand, "lines", state.step === "lines"));
+      }
+      if (state.line) {
+        parts.push('<span class="crumb-sep">›</span>');
+        parts.push(crumb(state.line, "types", state.step === "types"));
+      }
+      if (state.type) {
+        const t = C.getType(state.type);
+        parts.push('<span class="crumb-sep">›</span>');
+        parts.push(crumb(t ? t.name : state.type, "products", state.step === "products"));
+      }
+      if (state.product) {
+        const p = C.getProduct(state.product);
+        parts.push('<span class="crumb-sep">›</span>');
+        parts.push(crumb(p ? p.ref : "Ficha", "detail", true));
+      }
+    }
+    el.crumbs.innerHTML = parts.join("");
+    el.crumbs.querySelectorAll("[data-go]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        go(btn.getAttribute("data-go"));
+      });
+    });
+    bindShortcuts(el.crumbs);
+    el.back.hidden = state.step === "brands" && !state.typeFirst;
   }
 
   function crumb(label, step, active) {
@@ -90,16 +175,23 @@
 
   function renderBrands() {
     el.body.innerHTML =
+      shortcutChipsHtml() +
+      '<p class="brands-hint">Elija marca o use un atajo de tipo arriba.</p>' +
       '<div class="brand-grid">' +
       C.brands
-        .map(
-          (b) =>
+        .map(function (b) {
+          const logo = b.logo
+            ? '<div class="brand-logo-wrap"><img class="brand-logo" src="' +
+              escapeHtml(b.logo) +
+              '" alt="' +
+              escapeHtml(b.name) +
+              '" loading="lazy" width="120" height="134"></div>'
+            : '<div class="brand-mono" aria-hidden="true">' + escapeHtml(b.monogram || "?") + "</div>";
+          return (
             '<button type="button" class="brand-card" data-brand="' +
             b.id +
             '">' +
-            '<div class="brand-mono" aria-hidden="true">' +
-            escapeHtml(b.monogram) +
-            "</div>" +
+            logo +
             "<h3>" +
             escapeHtml(b.name) +
             "</h3>" +
@@ -107,64 +199,76 @@
             escapeHtml(C.brandTagline) +
             "</p>" +
             "</button>"
-        )
+          );
+        })
         .join("") +
-      "</div>";
-    el.body.querySelectorAll("[data-brand]").forEach((btn) => {
-      btn.addEventListener("click", () => go("lines", { brand: btn.getAttribute("data-brand") }));
+      "</div>" +
+      '<p class="tm-note">Logos de marca solo para identificación de compatibilidad.</p>';
+    el.body.querySelectorAll("[data-brand]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        go("lines", { brand: btn.getAttribute("data-brand"), typeFirst: null });
+      });
     });
+    bindShortcuts(el.body);
   }
 
   function renderLines() {
     const lines = C.linesFor(state.brand);
     if (!lines.length) {
       el.body.innerHTML =
+        shortcutChipsHtml() +
         '<div class="empty-state"><p>Sin líneas documentadas aún para esta marca en el catálogo PDF.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
         C.waUrl("Hola, busco repuestos " + (C.getBrand(state.brand) || {}).name) +
         '">' +
         WA_ICON +
         " Consultar por WhatsApp</a></div>";
+      bindShortcuts(el.body);
       return;
     }
     el.body.innerHTML =
+      shortcutChipsHtml() +
       '<div class="line-grid">' +
       lines
-        .map(
-          (ln) =>
+        .map(function (ln) {
+          return (
             '<button type="button" class="line-card" data-line="' +
             escapeHtml(ln) +
             '"><h3>' +
             escapeHtml(ln) +
             "</h3></button>"
-        )
+          );
+        })
         .join("") +
       "</div>";
-    el.body.querySelectorAll("[data-line]").forEach((btn) => {
-      btn.addEventListener("click", () => go("types", { line: btn.getAttribute("data-line") }));
+    el.body.querySelectorAll("[data-line]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        go("types", { line: btn.getAttribute("data-line") });
+      });
     });
+    bindShortcuts(el.body);
   }
 
   function renderTypes() {
     const types = C.typesFor(state.brand, state.line);
     if (!types.length) {
       el.body.innerHTML =
+        shortcutChipsHtml() +
         '<div class="empty-state"><p>No hay tipos listados para esta línea en el PDF. Escríbanos por WhatsApp.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
         C.waUrl(
-          "Hola, busco repuestos " +
-            (C.getBrand(state.brand) || {}).name +
-            " " +
-            state.line
+          "Hola, busco repuestos " + (C.getBrand(state.brand) || {}).name + " " + state.line
         ) +
         '">' +
         WA_ICON +
         " Consultar</a></div>";
+      bindShortcuts(el.body);
       return;
     }
     el.body.innerHTML =
+      shortcutChipsHtml() +
       '<div class="type-grid">' +
       types
-        .map(
-          (t) =>
+        .map(function (t) {
+          return (
             '<button type="button" class="type-card" data-type="' +
             t.id +
             '"><h3>' +
@@ -172,42 +276,73 @@
             "</h3><p>" +
             escapeHtml(t.label) +
             "</p></button>"
-        )
+          );
+        })
         .join("") +
       "</div>";
-    el.body.querySelectorAll("[data-type]").forEach((btn) => {
-      btn.addEventListener("click", () => go("products", { type: btn.getAttribute("data-type") }));
+    el.body.querySelectorAll("[data-type]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        go("products", { type: btn.getAttribute("data-type") });
+      });
     });
+    bindShortcuts(el.body);
+  }
+
+  function productCardHtml(p) {
+    const img =
+      p.image && !p.placeholder
+        ? '<img src="' +
+          escapeHtml(p.image) +
+          '" alt="' +
+          escapeHtml(p.title) +
+          '" loading="lazy">'
+        : '<div class="thumb-placeholder"><span>Foto en catálogo PDF</span><a class="pdf-link" href="assets/descargas/catalogo-vencedor-completo.pdf" download onclick="event.stopPropagation()">Descargar PDF</a></div>';
+    return (
+      '<button type="button" class="product-card" data-product="' +
+      p.id +
+      '"><div class="thumb">' +
+      img +
+      '</div><div class="meta"><div class="ref">' +
+      escapeHtml(p.ref) +
+      "</div><h3>" +
+      escapeHtml(p.title) +
+      "</h3></div></button>"
+    );
   }
 
   function renderProducts() {
-    const list = C.productsFor(state.brand, state.line, state.type);
+    let list;
+    if (state.typeFirst) {
+      list = productsByType(state.typeFirst);
+    } else {
+      list = C.productsFor(state.brand, state.line, state.type);
+    }
     if (!list.length) {
-      el.body.innerHTML = '<div class="empty-state"><p>Sin productos en este filtro.</p></div>';
+      el.body.innerHTML =
+        shortcutChipsHtml() +
+        '<div class="empty-state"><p>Sin productos en este filtro.</p></div>';
+      bindShortcuts(el.body);
       return;
     }
+    const heading = state.typeFirst
+      ? '<p class="brands-hint">' +
+        escapeHtml((C.getType(state.typeFirst) || {}).name || "") +
+        " · " +
+        list.length +
+        " referencias (todas las marcas)</p>"
+      : "";
     el.body.innerHTML =
+      shortcutChipsHtml() +
+      heading +
       '<div class="product-grid">' +
-      list
-        .map(
-          (p) =>
-            '<button type="button" class="product-card" data-product="' +
-            p.id +
-            '"><div class="thumb"><img src="' +
-            escapeHtml(p.image) +
-            '" alt="' +
-            escapeHtml(p.title) +
-            '" loading="lazy"></div><div class="meta"><div class="ref">' +
-            escapeHtml(p.ref) +
-            "</div><h3>" +
-            escapeHtml(p.title) +
-            "</h3></div></button>"
-        )
-        .join("") +
+      list.map(productCardHtml).join("") +
       "</div>";
-    el.body.querySelectorAll("[data-product]").forEach((btn) => {
-      btn.addEventListener("click", () => go("detail", { product: btn.getAttribute("data-product") }));
+    el.body.querySelectorAll("[data-product]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        go("detail", { product: btn.getAttribute("data-product") });
+      });
     });
+    bindShortcuts(el.body);
   }
 
   function renderDetail() {
@@ -216,15 +351,35 @@
       el.body.innerHTML = '<div class="empty-state"><p>Producto no encontrado.</p></div>';
       return;
     }
-    const fit = (p.fits || []).find((f) => f.brand === state.brand);
-    const lines = fit ? fit.lines : p.lines;
+    let lines;
+    if (state.typeFirst) {
+      lines = [];
+      (p.fits || []).forEach(function (f) {
+        const b = C.getBrand(f.brand);
+        (f.lines || []).forEach(function (ln) {
+          lines.push((b ? b.name + " " : "") + ln);
+        });
+      });
+      if (!lines.length) lines = p.lines || [];
+    } else {
+      const fit = (p.fits || []).find(function (f) {
+        return f.brand === state.brand;
+      });
+      lines = fit ? fit.lines : p.lines;
+    }
+    const imgHtml = p.placeholder
+      ? '<div class="thumb-placeholder detail-ph"><span>Foto en catálogo PDF</span><a class="btn btn-ghost btn-sm" href="assets/descargas/catalogo-vencedor-completo.pdf" download>Descargar PDF</a></div>'
+      : '<img src="' +
+        escapeHtml(p.image) +
+        '" alt="' +
+        escapeHtml(p.title) +
+        '" data-zoom>';
     el.body.innerHTML =
+      shortcutChipsHtml() +
       '<div class="detail">' +
-      '<div class="detail-img"><img src="' +
-      escapeHtml(p.image) +
-      '" alt="' +
-      escapeHtml(p.title) +
-      '" data-zoom></div>' +
+      '<div class="detail-img">' +
+      imgHtml +
+      "</div>" +
       '<div class="detail-copy">' +
       '<span class="detail-ref">' +
       escapeHtml(p.ref) +
@@ -236,7 +391,9 @@
       escapeHtml(p.description) +
       "</p>" +
       '<ul class="detail-fits">' +
-      lines.map((ln) => "<li>" + escapeHtml(ln) + "</li>").join("") +
+      (lines || []).map(function (ln) {
+        return "<li>" + escapeHtml(ln) + "</li>";
+      }).join("") +
       "</ul>" +
       '<div class="hero-actions">' +
       '<a class="btn btn-wa" target="_blank" rel="noopener noreferrer" href="' +
@@ -248,10 +405,15 @@
       "</div></div></div>";
     const zoom = el.body.querySelector("[data-zoom]");
     if (zoom) {
-      zoom.addEventListener("click", () => openLightbox(p.image, p.title));
+      zoom.addEventListener("click", function () {
+        openLightbox(p.image, p.title);
+      });
     }
     const backBtn = document.getElementById("detailBackProducts");
-    if (backBtn) backBtn.addEventListener("click", () => go("products"));
+    if (backBtn) backBtn.addEventListener("click", function () {
+      go("products");
+    });
+    bindShortcuts(el.body);
   }
 
   function render() {
@@ -276,7 +438,15 @@
     el.lightbox.setAttribute("aria-hidden", "true");
   }
 
-  el.back.addEventListener("click", () => {
+  el.back.addEventListener("click", function () {
+    if (state.typeFirst) {
+      if (state.step === "detail") {
+        go("products");
+      } else {
+        go("brands");
+      }
+      return;
+    }
     if (state.step === "detail") go("products");
     else if (state.step === "products") go("types");
     else if (state.step === "types") go("lines");
@@ -286,21 +456,36 @@
   const lbClose = document.getElementById("lightboxClose");
   if (lbClose) lbClose.addEventListener("click", closeLightbox);
   if (el.lightbox) {
-    el.lightbox.addEventListener("click", (e) => {
+    el.lightbox.addEventListener("click", function (e) {
       if (e.target === el.lightbox) closeLightbox();
     });
   }
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeLightbox();
   });
 
   const toggle = document.getElementById("navToggle");
   const links = document.getElementById("navLinks");
   if (toggle && links) {
-    toggle.addEventListener("click", () => links.classList.toggle("open"));
-    links.querySelectorAll("a").forEach((a) =>
-      a.addEventListener("click", () => links.classList.remove("open"))
-    );
+    toggle.addEventListener("click", function () {
+      links.classList.toggle("open");
+    });
+    links.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        links.classList.remove("open");
+      });
+    });
+  }
+
+  // Inject shortcut chips into funnel bar (blue bar)
+  const funnelBar = document.querySelector(".funnel-bar");
+  if (funnelBar && !document.getElementById("funnelShortcuts")) {
+    const wrap = document.createElement("div");
+    wrap.id = "funnelShortcuts";
+    wrap.className = "funnel-shortcuts";
+    wrap.innerHTML = shortcutChipsHtml();
+    funnelBar.insertBefore(wrap, funnelBar.firstChild);
+    bindShortcuts(wrap);
   }
 
   render();

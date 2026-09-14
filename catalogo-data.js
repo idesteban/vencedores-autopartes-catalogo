@@ -22,37 +22,44 @@
   {
     "id": "chevrolet",
     "name": "Chevrolet",
-    "monogram": "C"
+    "monogram": "C",
+    "logo": "assets/marcas/chevrolet.png"
   },
   {
     "id": "kia",
     "name": "Kia",
-    "monogram": "K"
+    "monogram": "K",
+    "logo": "assets/marcas/kia.png"
   },
   {
     "id": "mazda",
     "name": "Mazda",
-    "monogram": "M"
+    "monogram": "M",
+    "logo": "assets/marcas/mazda.png"
   },
   {
     "id": "toyota",
     "name": "Toyota",
-    "monogram": "T"
+    "monogram": "T",
+    "logo": "assets/marcas/toyota.png"
   },
   {
     "id": "nissan",
     "name": "Nissan",
-    "monogram": "N"
+    "monogram": "N",
+    "logo": "assets/marcas/nissan.png"
   },
   {
     "id": "hyundai",
     "name": "Hyundai",
-    "monogram": "H"
+    "monogram": "H",
+    "logo": "assets/marcas/hyundai.png"
   },
   {
     "id": "renault",
     "name": "Renault",
-    "monogram": "R"
+    "monogram": "R",
+    "logo": "assets/marcas/renault.png"
   }
 ],
     types: [
@@ -1485,7 +1492,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R + L/C con grasa + abrazaderas",
     "description": "B2600 2.6 12v 4WD (92/07).",
-    "image": "assets/productos/gpfu-maz-03.png",
+    "image": "assets/productos/gpfu-maz-06.png",
     "pdfPage": 8,
     "fits": [
       {
