@@ -351,18 +351,51 @@ footer .container {
 .funnel-bar-shortcuts{flex:1 1 100%;order:3}
 .funnel-bar-shortcuts .type-shortcuts{margin:0}
 
+
 .type-chip-marcas {
   background: #fff !important;
   color: var(--blue-deep, #050B61) !important;
   border: 2px solid #fff !important;
-  font-size: .88rem !important;
-  padding: .55rem 1rem !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  font-size: .9rem !important;
+  font-weight: 900 !important;
+  padding: .55rem 1.1rem !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.22);
   order: -1;
+  letter-spacing: .06em;
 }
 .type-chip-marcas.active {
   background: #FBBF24 !important;
   color: #050B61 !important;
   border-color: #FBBF24 !important;
+}
+.funnel-body .type-chip-marcas {
+  background: var(--blue, #1B4DFF) !important;
+  color: #fff !important;
+  border: 2px solid var(--blue, #1B4DFF) !important;
+  box-shadow: 0 2px 8px rgba(27,77,255,.35);
+}
+.funnel-body .type-chip-marcas.active,
+.funnel-body .type-chip-marcas:hover {
+  background: var(--navy, #050B61) !important;
+  border-color: var(--navy, #050B61) !important;
+  color: #fff !important;
+}
+.brand-card .brand-logo-wrap,
+.brand-card .logo-wrap {
+  background: #fff;
+  border-radius: 12px;
+  padding: .65rem .75rem;
+  display: grid;
+  place-items: center;
+  min-height: 72px;
+  overflow: hidden;
+}
+.brand-logo {
+  max-width: 100%;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 .type-shortcuts { display:flex; flex-wrap:wrap; gap:.45rem; align-items:center; }

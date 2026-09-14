@@ -526,7 +526,7 @@
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P010",
     "description": "Universal. Camiones de estaca Chevrolet NKR, NQR, NPR, NNR; entre otros.",
-    "image": "assets/productos/_placeholder-blanco.png",
+    "image": "assets/productos/p010.png",
     "pdfPage": 19,
     "fits": [
       {
@@ -638,7 +638,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C sin grasa / sin abrazaderas IZQ LH",
     "description": "Logan; Sandero I/II; Stepway I/II.",
-    "image": "assets/productos/_placeholder-blanco.png",
+    "image": "assets/productos/gp-ren-02.png",
     "pdfPage": 3,
     "fits": [
       {
@@ -980,7 +980,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
     "description": "Alto 1.0; Spark I/II Chronos; Swift 1.0; Sprint SA310.",
-    "image": "assets/productos/_placeholder-blanco.png",
+    "image": "assets/productos/gpfu-chev-01.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1394,7 +1394,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C con grasa + abrazaderas",
     "description": "626 Nueva Raza 1.8 (84/88).",
-    "image": "assets/productos/gpfu-maz-02-clean.png",
+    "image": "assets/productos/gpfu-maz-02.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1418,7 +1418,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R + L/C con grasa + abrazaderas",
     "description": "626 Asahi / Matsuri / Nuevo Milenio.",
-    "image": "assets/productos/gpfu-maz-03-clean.png",
+    "image": "assets/productos/gpfu-maz-03.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1466,7 +1466,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C base hexagonal con grasa + abrazaderas",
     "description": "Mazda3 / All New; Mazda5 / All New (trans. automática).",
-    "image": "assets/productos/gpfu-maz-05-clean.png",
+    "image": "assets/productos/gpfu-maz-05.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1492,7 +1492,7 @@
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R + L/C con grasa + abrazaderas",
     "description": "B2600 2.6 12v 4WD (92/07).",
-    "image": "assets/productos/gpfu-maz-06-clean.png",
+    "image": "assets/productos/gpfu-maz-06.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1586,7 +1586,7 @@
     "type": "fuelles",
     "title": "Fuelle de dirección Hyundai i10",
     "description": "Hyundai i10.",
-    "image": "assets/productos/_placeholder-blanco.png",
+    "image": "assets/productos/gpfu-hykia-05.png",
     "pdfPage": 9,
     "fits": [
       {
