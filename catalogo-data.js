@@ -1156,8 +1156,8 @@
     "ref": "GP-CHEV-SP-LC",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
-    "description": "Alto 1.0; Spark I/II Chronos; Swift 1.0; Sprint SA310; Hyundai Santro. COD INR 33104.",
-    "image": "assets/productos/gp-inr-33104.png",
+    "description": "Alto 1.0; Spark I/II Chronos; Swift 1.0; Sprint SA310; Hyundai Santro. Ref. VR-33104.",
+    "image": "assets/productos/gp-vr-33104.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1202,8 +1202,8 @@
     "ref": "GP-CHEV-SP-LR",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Alto; Spark I/II; Sprint; Swift 1.0/1.3/1.6; Hyundai Santro. COD INR 33103.",
-    "image": "assets/productos/gp-inr-33103.png",
+    "description": "Alto; Spark I/II; Sprint; Swift 1.0/1.3/1.6; Hyundai Santro. Ref. VR-33103.",
+    "image": "assets/productos/gp-vr-33103.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1802,12 +1802,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-33111",
-    "ref": "INR-33111",
+    "id": "vr-33111",
+    "ref": "VR-33111",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Chevrolet Rodeo 2.6 4WD (96/00). COD INR 33111 / REF 8943131050. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-33111.png",
+    "description": "Chevrolet Rodeo 2.6 4WD (96/00). Ref. VR-33111 / REF 8943131050. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-33111.png",
     "pdfPage": 7,
     "fits": [
       {
@@ -1826,12 +1826,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-33112",
-    "ref": "INR-33112",
+    "id": "vr-33112",
+    "ref": "VR-33112",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
-    "description": "Chevrolet Rodeo 2.6 4WD (96/00). COD INR 33112 / REF 8943130500. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-33112.png",
+    "description": "Chevrolet Rodeo 2.6 4WD (96/00). Ref. VR-33112 / REF 8943130500. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-33112.png",
     "pdfPage": 7,
     "fits": [
       {
@@ -1850,12 +1850,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-33160",
-    "ref": "INR-33160",
+    "id": "vr-33160",
+    "ref": "VR-33160",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Chevrolet Sail. COD INR 33160 / REF 96391553. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-33160.png",
+    "description": "Chevrolet Sail. Ref. VR-33160 / REF 96391553. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-33160.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1874,12 +1874,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-33161",
-    "ref": "INR-33161",
+    "id": "vr-33161",
+    "ref": "VR-33161",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
-    "description": "Chevrolet Sail. COD INR 33161 / REF 96489856. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-33161.png",
+    "description": "Chevrolet Sail. Ref. VR-33161 / REF 96489856. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-33161.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1898,12 +1898,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-39703",
-    "ref": "INR-39703",
+    "id": "vr-39703",
+    "ref": "VR-39703",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Toyota Corolla AE80/AE82/AE85/AE86. COD INR 39703 / REF 443817012. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-39703.png",
+    "description": "Toyota Corolla AE80/AE82/AE85/AE86. Ref. VR-39703 / REF 443817012. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-39703.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1922,12 +1922,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-39704",
-    "ref": "INR-39704",
+    "id": "vr-39704",
+    "ref": "VR-39704",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
-    "description": "Toyota Corolla AE80/AE82/AE85/AE86. COD INR 39704 / REF 443812010. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-39704.png",
+    "description": "Toyota Corolla AE80/AE82/AE85/AE86. Ref. VR-39704 / REF 443812010. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-39704.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1946,12 +1946,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-39705",
-    "ref": "INR-39705",
+    "id": "vr-39705",
+    "ref": "VR-39705",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Toyota Corolla AE92/EE90. COD INR 39705 / REF PH188-10A. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-39705.png",
+    "description": "Toyota Corolla AE92/EE90. Ref. VR-39705 / REF PH188-10A. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-39705.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1970,12 +1970,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-39706",
-    "ref": "INR-39706",
+    "id": "vr-39706",
+    "ref": "VR-39706",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
-    "description": "Toyota Corolla AE92/EE90. COD INR 39706 / REF 4344812120. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-39706.png",
+    "description": "Toyota Corolla AE92/EE90. Ref. VR-39706 / REF 4344812120. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-39706.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1994,12 +1994,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-32107",
-    "ref": "INR-32107",
+    "id": "vr-32107",
+    "ref": "VR-32107",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R+L/C kit",
-    "description": "Ford Ranger. COD INR 32107 / REF G01322530. Kit L/R + L/C. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-32107.png",
+    "description": "Ford Ranger. Ref. VR-32107 / REF G01322530. Kit L/R + L/C. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-32107.png",
     "pdfPage": 9,
     "fits": [
       {
@@ -2018,12 +2018,12 @@
     "material": "100% caucho"
   },
   {
-    "id": "inr-32125",
-    "ref": "INR-32125",
+    "id": "vr-32125",
+    "ref": "VR-32125",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Ford Laser. COD INR 32125 / REF FA502253OA. Con grasa + abrazaderas.",
-    "image": "assets/productos/gp-inr-32125.png",
+    "description": "Ford Laser. Ref. VR-32125 / REF FA502253OA. Con grasa + abrazaderas.",
+    "image": "assets/productos/gp-vr-32125.png",
     "pdfPage": 9,
     "fits": [
       {
