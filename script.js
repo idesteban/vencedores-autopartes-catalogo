@@ -159,7 +159,11 @@
 
   function renderCrumbs() {
     const parts = [];
-    parts.push(crumb("Marcas", "brands", state.step === "brands" && !state.typeFirst));
+    if (state.step === "brands" && !state.typeFirst) {
+      el.crumbs.innerHTML = "";
+      return;
+    }
+    parts.push(crumb("Marcas", "brands", false));
     if (state.typeFirst) {
       const t = C.getType(state.typeFirst);
       parts.push('<span class="crumb-sep">›</span>');
@@ -220,7 +224,6 @@
 
   function renderBrands() {
     el.body.innerHTML =
-      shortcutChipsHtml() +
       '<p class="brands-hint">Elija marca o use un atajo de tipo arriba.</p>' +
       '<div class="brand-grid">' +
       C.brands
@@ -261,8 +264,7 @@
     const lines = C.linesFor(state.brand);
     if (!lines.length) {
       el.body.innerHTML =
-        shortcutChipsHtml() +
-        '<div class="empty-state"><p>Sin líneas documentadas aún para esta marca en el catálogo PDF.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
+          '<div class="empty-state"><p>Sin líneas documentadas aún para esta marca en el catálogo PDF.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
         C.waUrl("Hola, busco repuestos " + (C.getBrand(state.brand) || {}).name) +
         '">' +
         WA_ICON +
@@ -271,7 +273,6 @@
       return;
     }
     el.body.innerHTML =
-      shortcutChipsHtml() +
       '<div class="line-grid">' +
       lines
         .map(function (ln) {
@@ -297,8 +298,7 @@
     const types = C.typesFor(state.brand, state.line);
     if (!types.length) {
       el.body.innerHTML =
-        shortcutChipsHtml() +
-        '<div class="empty-state"><p>No hay tipos listados para esta línea en el PDF. Escríbanos por WhatsApp.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
+          '<div class="empty-state"><p>No hay tipos listados para esta línea en el PDF. Escríbanos por WhatsApp.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
         C.waUrl(
           "Hola, busco repuestos " + (C.getBrand(state.brand) || {}).name + " " + state.line
         ) +
@@ -309,7 +309,6 @@
       return;
     }
     el.body.innerHTML =
-      shortcutChipsHtml() +
       '<div class="type-grid">' +
       types
         .map(function (t) {
@@ -365,8 +364,7 @@
     if (!list.length) {
       const typeForWa = state.type || state.typeFirst;
       el.body.innerHTML =
-        shortcutChipsHtml() +
-        '<div class="empty-state"><p>Sin productos en este filtro. Cotice por WhatsApp.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
+          '<div class="empty-state"><p>Sin productos en este filtro. Cotice por WhatsApp.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
         C.waUrl(C.waMessage({ type: typeForWa })) +
         '">' +
         WA_ICON +
@@ -382,7 +380,6 @@
         " referencias (todas las marcas)</p>"
       : "";
     el.body.innerHTML =
-      shortcutChipsHtml() +
       heading +
       '<div class="product-grid">' +
       list.map(productCardHtml).join("") +
@@ -425,7 +422,6 @@
         escapeHtml(p.title) +
         '" data-zoom>';
     el.body.innerHTML =
-      shortcutChipsHtml() +
       '<div class="detail">' +
       '<div class="detail-img">' +
       imgHtml +
@@ -530,14 +526,7 @@
 
   // Inject shortcut chips into funnel bar (blue bar)
   const funnelBar = document.querySelector(".funnel-bar");
-  if (funnelBar && !document.getElementById("funnelShortcuts")) {
-    const wrap = document.createElement("div");
-    wrap.id = "funnelShortcuts";
-    wrap.className = "funnel-shortcuts";
-    wrap.innerHTML = shortcutChipsHtml();
-    funnelBar.insertBefore(wrap, funnelBar.firstChild);
-    bindShortcuts(wrap);
-  }
+
 
   render();
 })();

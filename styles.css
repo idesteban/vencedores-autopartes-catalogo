@@ -399,3 +399,35 @@ footer .container {
   display: block;
 }
 .type-shortcuts { display:flex; flex-wrap:wrap; gap:.45rem; align-items:center; }
+
+
+
+/* Bigger brand logos */
+.brand-card .brand-logo-wrap,
+.brand-logo-wrap {
+  width: 148px !important;
+  height: 108px !important;
+  margin: 0 auto .7rem !important;
+  padding: 12px !important;
+  background: #fff !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.brand-card .brand-logo,
+.brand-logo {
+  max-width: 128px !important;
+  max-height: 88px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+.brand-grid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)) !important;
+  gap: 1.1rem !important;
+}
+.brand-card { padding: 1.15rem 1rem !important; min-height: 220px; }
+.funnel-body .type-shortcuts { display: none !important; }
+.funnel-shortcuts { display: none !important; } /* legacy duplicate */
