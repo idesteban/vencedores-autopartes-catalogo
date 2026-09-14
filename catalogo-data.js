@@ -1,1085 +1,1679 @@
 /**
- * Vencedores Autopartes — catálogo searchable (solo datos de PDFs oficiales).
- * Sin precios inventados. Cotización por WhatsApp.
+ * Vencedores Autopartes — embudo marca → línea → tipo → producto
+ * Fuente: REF_CATALOGO_USUARIO.pdf (20 págs). Sin inventos fuera del PDF.
  */
 (function (global) {
-  const WA_LINES = {
-    pedales: "Hola estoy muy interesado en sus productos. Pedales",
-    fuelles: "Hola estoy muy interesado en sus productos. Guardapolvos y fuelles",
-    mezclas: "Hola estoy muy interesado en sus productos. Mezclas",
-    general: "Hola estoy muy interesado en sus productos.",
-  };
-
-  const brands = [
-    {
-      id: "chevrolet",
-      name: "Chevrolet",
-      monogram: "C",
-      tagline: "Pedales CV + guardapolvos eje y dirección",
-      accent: "#F59E0B",
-      highlights: ["Pedales CV-01…CV-04", "Guardapolvos eje L/C · L/R", "Fuelles dirección", "Spark · Aveo · Sail · LUV · D-Max"],
-      vehicleTypes: ["liviano", "camioneta", "camion", "taxi"],
-    },
-    {
-      id: "renault",
-      name: "Renault",
-      monogram: "R",
-      tagline: "Línea más completa de fuelles y pedales",
-      accent: "#FBBF24",
-      highlights: ["Pedales CV-05", "Guardapolvos eje L/C · L/R", "Fuelle caja dirección", "Logan · Sandero · Clio · Duster"],
-      vehicleTypes: ["liviano", "camioneta", "taxi"],
-    },
-    {
-      id: "hyundai",
-      name: "Hyundai",
-      monogram: "H",
-      tagline: "Pedales, taxi y fuelles de dirección",
-      accent: "#F59E0B",
-      highlights: ["Pedales CV-06…CV-09", "Hyundai Taxi / Atos", "Fuelle dirección i10", "Accent · Vision · Atos"],
-      vehicleTypes: ["liviano", "taxi"],
-    },
-    {
-      id: "kia",
-      name: "Kia",
-      monogram: "K",
-      tagline: "Pedales y guardapolvos taxi / Picanto",
-      accent: "#D97706",
-      highlights: ["Pedales CV-06 · CV-07", "Picanto / Ekotaxi / Ion", "Refs 33103 · 33104", "Rio · Sportage · Sorento"],
-      vehicleTypes: ["liviano", "taxi", "camioneta"],
-    },
-    {
-      id: "mazda",
-      name: "Mazda",
-      monogram: "M",
-      tagline: "Pedales CV + guardapolvos 626 / Mazda3",
-      accent: "#F59E0B",
-      highlights: ["Pedales CV-03 · CV-07", "626 NR / Asahi / Matsuri", "Mazda3 · Mazda5 · B2600", "Fuelle dirección MX-6"],
-      vehicleTypes: ["liviano", "camioneta"],
-    },
-    {
-      id: "nissan",
-      name: "Nissan",
-      monogram: "N",
-      tagline: "Pedales camioneta y busetón",
-      accent: "#FBBF24",
-      highlights: ["Pedales CV-10 · CV-11", "Frontier · Urvan", "Busetón Nissan", "Rejilla / espiga"],
-      vehicleTypes: ["camioneta", "bus"],
-    },
-    {
-      id: "toyota",
-      name: "Toyota",
-      monogram: "T",
-      tagline: "Pedales universales camioneta",
-      accent: "#F59E0B",
-      highlights: ["Pedales CV-12", "Prado · 4Runner", "Universal camionetas", "Mixto"],
-      vehicleTypes: ["camioneta"],
-    },
-    {
-      id: "mitsubishi",
-      name: "Mitsubishi",
-      monogram: "Mi",
-      tagline: "Pedales CV-06 · L300",
-      accent: "#D97706",
-      highlights: ["Pedales CV-06", "L300", "Espiga / chevron"],
-      vehicleTypes: ["liviano", "camioneta"],
-    },
-    {
-      id: "mercedes-benz",
-      name: "Mercedes-Benz",
-      monogram: "MB",
-      tagline: "Pedales bus / espiga CV-11",
-      accent: "#F59E0B",
-      highlights: ["Pedales CV-11", "Bus / Esplínder", "Espiga"],
-      vehicleTypes: ["bus"],
-    },
-    {
-      id: "suzuki",
-      name: "Suzuki",
-      monogram: "S",
-      tagline: "Línea Chevy/Suzuki — Alto · Swift · Vitara",
-      accent: "#FBBF24",
-      highlights: ["Guardapolvos Alto · Swift", "Sprint SA310", "Vitara SE416", "Fuelles dirección"],
-      vehicleTypes: ["liviano", "camioneta"],
-    },
-  ];
-
-  /** @type {Array<object>} */
-  const products = [
-    // ——— PEDALES CV (primarios) ———
-    {
-      id: "cv-01",
-      ref: "CV-01",
-      type: "pedal",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["LUV 2300", "D-Max", "Dimax", "Trooper"],
-      title: "Pedal freno y embrague — nervaduras horizontales",
-      desc: "Forro 100% caucho. Nervaduras horizontales. Parque camioneta Chevrolet.",
-      tags: ["freno", "embrague", "nervaduras horizontales", "camioneta"],
-      synonyms: ["luv", "dmax", "d-max", "dimax", "trooper", "chevy", "chevrolet", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P009"],
-    },
-    {
-      id: "cv-02",
-      ref: "CV-02",
-      type: "pedal",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["Corsa", "Sail", "Aveo"],
-      title: "Pedal freno y embrague — nervaduras verticales",
-      desc: "Forro 100% caucho. Nervaduras verticales. Livianos Chevrolet.",
-      tags: ["freno", "embrague", "nervaduras verticales", "liviano"],
-      synonyms: ["corsa", "sail", "aveo", "chevy", "chevrolet", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P006"],
-    },
-    {
-      id: "cv-03",
-      ref: "CV-03",
-      type: "pedal",
-      brand: "Chevrolet",
-      brands: ["Chevrolet", "Mazda", "Suzuki"],
-      models: ["Sprint", "Swift", "N300", "N200", "Mazda 323"],
-      title: "Pedal freno y embrague — burbujas / panal",
-      desc: "Textura burbujas/panal. Chevrolet/Suzuki-line y Mazda 323.",
-      tags: ["freno", "embrague", "burbujas", "panal"],
-      synonyms: ["sprint", "swift", "n300", "n200", "mazda 323", "323", "spark", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P001"],
-    },
-    {
-      id: "cv-04",
-      ref: "CV-04",
-      type: "pedal",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["NPR", "NHR", "NKR"],
-      title: "Pedal freno y embrague — Brake/Clutch text",
-      desc: "Para camiones Chevrolet NPR / NHR / NKR. Texto Brake/Clutch.",
-      tags: ["freno", "embrague", "camion", "brake", "clutch"],
-      synonyms: ["npr", "nhr", "nkr", "nqr", "nnr", "camion", "chevy", "chevrolet"],
-      waLine: "pedales",
-      legacy: ["P010"],
-    },
-    {
-      id: "cv-05",
-      ref: "CV-05",
-      type: "pedal",
-      brand: "Renault",
-      brands: ["Renault"],
-      models: ["Logan", "Symbol", "Kangoo", "Duster"],
-      title: "Pedal freno y embrague — nervaduras horizontales",
-      desc: "Renault Logan, Symbol, Kangoo, Duster y otros. Nervaduras horizontales.",
-      tags: ["freno", "embrague", "nervaduras horizontales"],
-      synonyms: ["logan", "symbol", "kangoo", "duster", "renault", "sandero", "clio", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P003", "P004"],
-    },
-    {
-      id: "cv-06",
-      ref: "CV-06",
-      type: "pedal",
-      brand: "Kia",
-      brands: ["Kia", "Hyundai", "Mitsubishi"],
-      models: ["Kia Rio", "Sportage", "Sorento", "Hyundai Accent", "Vision", "Mitsubishi L300"],
-      title: "Pedal freno y embrague — espiga / chevron",
-      desc: "Textura espiga/chevron. Kia, Hyundai Accent/Vision y Mitsubishi L300.",
-      tags: ["freno", "embrague", "espiga", "chevron"],
-      synonyms: ["rio", "sportage", "sorento", "accent", "acent", "vision", "l300", "kia", "hyundai", "mitsubishi"],
-      waLine: "pedales",
-      legacy: ["P005", "P007"],
-    },
-    {
-      id: "cv-07",
-      ref: "CV-07",
-      type: "pedal",
-      brand: "Hyundai",
-      brands: ["Hyundai", "Kia", "Mazda"],
-      models: ["i10", "Picanto", "Mazda", "Lion"],
-      title: "Pedal freno y embrague — nervaduras verticales",
-      desc: "Hyundai i10, Kia Picanto/Lion y Mazda. Nervaduras verticales.",
-      tags: ["freno", "embrague", "nervaduras verticales"],
-      synonyms: ["i10", "picanto", "lion", "mazda", "hyundai", "kia", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P005"],
-    },
-    {
-      id: "cv-08",
-      ref: "CV-08",
-      type: "pedal",
-      brand: "Hyundai",
-      brands: ["Hyundai"],
-      models: ["Atos"],
-      title: "Pedal freno y embrague — espiga (Atos)",
-      desc: "Hyundai Atos. Textura espiga.",
-      tags: ["freno", "embrague", "espiga", "atos"],
-      synonyms: ["atos", "hyundai", "taxi", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P002"],
-    },
-    {
-      id: "cv-09",
-      ref: "CV-09",
-      type: "pedal",
-      brand: "Hyundai",
-      brands: ["Hyundai"],
-      models: ["Accent"],
-      title: "Pedal freno y embrague — nervaduras verticales",
-      desc: "Hyundai Accent y otros. Nervaduras verticales.",
-      tags: ["freno", "embrague", "nervaduras verticales"],
-      synonyms: ["accent", "acent", "acento", "hyundai", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P002", "P005"],
-    },
-    {
-      id: "cv-10",
-      ref: "CV-10",
-      type: "pedal",
-      brand: "Nissan",
-      brands: ["Nissan"],
-      models: ["Frontier", "Urvan"],
-      title: "Pedal freno y embrague — rejilla / bloques",
-      desc: "Nissan Frontier y Urvan. Textura rejilla/bloques. Ref. también CV101.",
-      tags: ["freno", "embrague", "rejilla", "camioneta"],
-      synonyms: ["frontier", "urvan", "navarra", "nissan", "cv101", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P008"],
-    },
-    {
-      id: "cv-11",
-      ref: "CV-11",
-      type: "pedal",
-      brand: "Nissan",
-      brands: ["Nissan", "Mercedes-Benz"],
-      models: ["Busetón Nissan", "Mercedes-Benz", "Esplínder"],
-      title: "Pedal freno y embrague — espiga (bus)",
-      desc: "Busetón Nissan, Mercedes-Benz y Esplínder. Textura espiga.",
-      tags: ["freno", "embrague", "espiga", "bus"],
-      synonyms: ["buseton", "busetón", "mercedes", "mercedes-benz", "esplinder", "esplínder", "nissan", "bus"],
-      waLine: "pedales",
-    },
-    {
-      id: "cv-12",
-      ref: "CV-12",
-      type: "pedal",
-      brand: "Toyota",
-      brands: ["Toyota"],
-      models: ["Universal", "Prado", "4Runner"],
-      title: "Pedal freno y embrague — mixto (Toyota)",
-      desc: "Toyota universal, Prado, 4Runner y otros. Textura mixta.",
-      tags: ["freno", "embrague", "mixto", "camioneta"],
-      synonyms: ["prado", "4runner", "runner", "fortuner", "hilux", "tacoma", "toyota", "land cruiser", "forro pedal"],
-      waLine: "pedales",
-      legacy: ["P011"],
-    },
-
-    // ——— GUARDAPOLVOS / FUELLES — RENAULT ———
-    {
-      id: "ren-gp-eje-lc-classic",
-      ref: "GP-REN-EJE-LC",
-      type: "guardapolvo",
-      brand: "Renault",
-      brands: ["Renault"],
-      models: ["R4 Master/Lider", "R6", "R9", "R12", "R18", "R19", "Clio I"],
-      title: "Guardapolvo eje L/C — junta triceta / homocinética",
-      desc: "G/POLVO eje L/C. R4, R6, R9, R12, R18, R19, Clio I (catálogo cauchos).",
-      tags: ["guardapolvo", "eje", "L/C", "triceta", "homocinetica"],
-      synonyms: ["guardapolvo", "fuelle eje", "homocinetica", "homocinética", "triceta", "renault", "r4", "r9", "r19", "clio"],
-      waLine: "fuelles",
-    },
-    {
-      id: "ren-gp-eje-lr-classic",
-      ref: "GP-REN-EJE-LR",
-      type: "guardapolvo",
-      brand: "Renault",
-      brands: ["Renault"],
-      models: ["R4", "R6", "R12", "R18", "R19", "Logan", "Megane II", "Sandero I", "Grand Scenic", "Scenic II", "Stepway I"],
-      title: "Guardapolvo eje L/R — triceta / homocinética",
-      desc: "G/POLVO eje L/R. Clásicos Renault + Logan, Megane II, Sandero, Scenic, Stepway.",
-      tags: ["guardapolvo", "eje", "L/R", "triceta"],
-      synonyms: ["guardapolvo", "eje", "logan", "sandero", "megane", "scenic", "stepway", "renault"],
-      waLine: "fuelles",
-    },
-    {
-      id: "ren-gp-eje-lc-lh-modern",
-      ref: "GP-REN-EJE-LC-LH",
-      type: "guardapolvo",
-      brand: "Renault",
-      brands: ["Renault"],
-      models: [
-        "Clio I 1.4/1.8 8v (92/01)",
-        "Clio II 1.4/1.6 16v (01/12)",
-        "Megane I 1.4/1.6 16v (99/09)",
-        "Citius Taxi 1.4 16v (06/10)",
-        "Symbol I 1.4 8v (01/03)",
-        "Symbol II 1.4/1.6 16v (03/10)",
-        "Logan 1.4/1.6 8v (05-16)",
-        "Logan 1.6 Fase II (16-)",
-        "Sandero I 1.6 8v-16v (09-16)",
-        "Sandero II 1.6 (16-)",
-      ],
-      title: "Guardapolvo eje L/C LH — Clio · Megane · Logan · Sandero · Taxi",
-      desc: "G/POLVO eje L/C izquierdo LH. Logan/Sandero Fase II: SIN GRASA / SIN ABRAZADERAS (según PDF).",
-      tags: ["guardapolvo", "eje", "L/C", "LH", "taxi"],
-      synonyms: ["clio", "megane", "citius", "symbol", "logan", "sandero", "taxi", "renault", "guardapolvo"],
-      waLine: "fuelles",
-      notes: "Logan 1.6 Fase II y Sandero II: sin grasa / sin abrazaderas",
-    },
-    {
-      id: "ren-gp-duster",
-      ref: "GP-REN-DUSTER",
-      type: "guardapolvo",
-      brand: "Renault",
-      brands: ["Renault"],
-      models: [
-        "Duster 1.6/2.0 2WD (12-)",
-        "Duster 2.0 4WD (12-)",
-        "Duster Oroch 2.0 2WD (16-)",
-        "Fluence 1.6/2.0 (10/15)",
-      ],
-      title: "Guardapolvo eje — Duster / Oroch / Fluence",
-      desc: "G/POLVO eje L/C solo y L/R. Duster 2WD/4WD, Oroch y Fluence.",
-      tags: ["guardapolvo", "eje", "duster", "camioneta"],
-      synonyms: ["duster", "oroch", "fluence", "renault", "4wd", "2wd", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "ren-fuelle-dir",
-      ref: "FU-REN-DIR",
-      type: "fuelle",
-      brand: "Renault",
-      brands: ["Renault"],
-      models: [
-        "R4 Master/Lider",
-        "R18",
-        "R9",
-        "Twingo I",
-        "Twingo II",
-        "Clio I",
-        "Clio II",
-        "Clio II Campus",
-        "Express Taxi",
-        "Kangoo",
-        "Megane I",
-        "Scenic I",
-        "Citius Taxi",
-        "Symbol I",
-        "Symbol II",
-      ],
-      title: "Fuelle caja dirección — Renault",
-      desc: "Fuelle de caja de dirección. Amplia cobertura Renault liviano y taxi.",
-      tags: ["fuelle", "direccion", "caja direccion"],
-      synonyms: ["fuelle", "direccion", "dirección", "cremallera", "twingo", "clio", "kangoo", "symbol", "renault", "taxi"],
-      waLine: "fuelles",
-    },
-
-    // ——— MAZDA ———
-    {
-      id: "maz-gp-626-lr-grasa",
-      ref: "GP-MAZ-626-LR",
-      type: "guardapolvo",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: ["626 Nueva Raza 1.8 (84/88)", "MX-6 2.0 16v (93/97)"],
-      title: "Guardapolvo L/R con grasa — 626 NR / MX-6",
-      desc: "G/POLVO L/R con grasa. 626 Nueva Raza y MX-6.",
-      tags: ["guardapolvo", "L/R", "grasa", "626"],
-      synonyms: ["mazda", "626", "mx-6", "mx6", "nueva raza", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "maz-gp-626-lc",
-      ref: "GP-MAZ-626-LC",
-      type: "guardapolvo",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: ["626 Nueva Raza 1.8 (84/88)"],
-      title: "Guardapolvo L/C — 626 Nueva Raza",
-      desc: "G/POLVO L/C. 626 Nueva Raza 1.8 (84/88).",
-      tags: ["guardapolvo", "L/C", "626"],
-      synonyms: ["mazda", "626", "nueva raza", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "maz-gp-626-asahi",
-      ref: "GP-MAZ-626-ASAHI",
-      type: "guardapolvo",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: [
-        "626 Asahi 1.8/2.0 (89/97)",
-        "Matsuri 2.0 16v (93/97)",
-        "Nuevo Milenio 2.0 16v",
-      ],
-      title: "Guardapolvo L/R + L/C — 626 Asahi / Matsuri / Nuevo Milenio",
-      desc: "G/POLVO L/R y L/C. 626 Asahi, Matsuri y Nuevo Milenio.",
-      tags: ["guardapolvo", "L/R", "L/C", "626", "asahi"],
-      synonyms: ["mazda", "626", "asahi", "matsuri", "nuevo milenio", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "maz-fuelle-mx6",
-      ref: "FU-MAZ-32113",
-      type: "fuelle",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: ["MX-6 2.0 16v (93/97)"],
-      title: "Fuelle dirección COD 32113 · REF GJ2232125",
-      desc: "Fuelle de dirección. Código 32113, referencia GJ2232125. MX-6 2.0 16v.",
-      tags: ["fuelle", "direccion", "32113", "GJ2232125"],
-      synonyms: ["mazda", "mx-6", "mx6", "fuelle", "direccion", "32113", "gj2232125"],
-      waLine: "fuelles",
-    },
-    {
-      id: "maz-gp-mazda3",
-      ref: "GP-MAZ-M3-HEX",
-      type: "guardapolvo",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: [
-        "Mazda3 1.6/2.0 (04/14)",
-        "Mazda3 All New (11/14)",
-        "Mazda5 2.0 (06/08)",
-        "Mazda5 All New (11/12)",
-      ],
-      title: "Guardapolvo L/C base hexagonal (AT) — Mazda3 / Mazda5",
-      desc: "G/POLVO L/C base hexagonal (automática). Mazda3 y Mazda5.",
-      tags: ["guardapolvo", "L/C", "hexagonal", "AT"],
-      synonyms: ["mazda3", "mazda 3", "mazda5", "mazda 5", "hexagonal", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "maz-gp-b2600",
-      ref: "GP-MAZ-B2600",
-      type: "guardapolvo",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: ["B2600 2.6 12v 4WD (92/07)"],
-      title: "Guardapolvo L/R + L/C — B2600 4WD",
-      desc: "G/POLVO L/R y L/C. Mazda B2600 2.6 12v 4WD.",
-      tags: ["guardapolvo", "camioneta", "4WD", "B2600"],
-      synonyms: ["b2600", "mazda", "4wd", "camioneta", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "maz-brand-cotizar",
-      ref: "GP-MAZ-COTIZAR",
-      type: "guardapolvo",
-      brand: "Mazda",
-      brands: ["Mazda"],
-      models: ["Cotizar por modelo"],
-      title: "Guardapolvos / fuelles Mazda — cotizar por modelo",
-      desc: "Página de marca en catálogo PDF. Indique modelo exacto por WhatsApp.",
-      tags: ["guardapolvo", "fuelle", "cotizar"],
-      synonyms: ["mazda", "cotizar", "modelo", "guardapolvo", "fuelle"],
-      waLine: "fuelles",
-    },
-
-    // ——— CHEVROLET / SUZUKI-line ———
-    {
-      id: "chevy-gp-aveo-optra-sail",
-      ref: "GP-CHEV-AVEO-LC",
-      type: "guardapolvo",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["Aveo T200/T250", "Optra J200", "Sail 1.4"],
-      title: "Guardapolvo eje L/C sin grasa — Aveo · Optra · Sail",
-      desc: "G/POLVO L/C sin grasa. Aveo T200/T250, Optra J200, Sail.",
-      tags: ["guardapolvo", "L/C", "sin grasa"],
-      synonyms: ["aveo", "optra", "sail", "chevrolet", "chevy", "t200", "t250", "j200", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-gp-aveo-lr",
-      ref: "GP-CHEV-AVEO-LR",
-      type: "guardapolvo",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["Aveo T200/T250", "Captiva", "Optra J200", "Sail"],
-      title: "Guardapolvo eje L/R — Aveo · Captiva · Optra · Sail",
-      desc: "G/POLVO eje L/R. Aveo, Captiva, Optra y Sail (catálogo cauchos).",
-      tags: ["guardapolvo", "L/R"],
-      synonyms: ["aveo", "captiva", "optra", "sail", "chevrolet", "chevy", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-gp-spark",
-      ref: "GP-CHEV-SPARK",
-      type: "guardapolvo",
-      brand: "Chevrolet",
-      brands: ["Chevrolet", "Suzuki"],
-      models: ["Spark I M200", "Spark II Chronos M250", "Alto 1.0", "Swift", "Sprint SA310"],
-      title: "Guardapolvo L/R y L/C CON grasa+abrazaderas — Spark · Alto · Swift",
-      desc: "Spark I/II Chronos: L/R y L/C CON grasa y abrazaderas. También Alto, Swift, Sprint.",
-      tags: ["guardapolvo", "L/R", "L/C", "grasa", "abrazaderas"],
-      synonyms: ["spark", "chronos", "alto", "swift", "sprint", "m200", "m250", "chevrolet", "suzuki", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-fuelle-sprint",
-      ref: "FU-CHEV-SPRINT-RH",
-      type: "fuelle",
-      brand: "Chevrolet",
-      brands: ["Chevrolet", "Suzuki"],
-      models: ["Sprint SA310", "Alto 1.0", "Swift 1.0/1.3/1.6"],
-      title: "Fuelle dirección lado pasajero RH — Sprint · Alto · Swift",
-      desc: "Fuelle caja dirección lado pasajero. Sprint SA310, Alto y Swift.",
-      tags: ["fuelle", "direccion", "RH", "pasajero"],
-      synonyms: ["sprint", "sa310", "alto", "swift", "fuelle", "direccion", "chevrolet", "suzuki"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-fuelle-dir-lh",
-      ref: "FU-CHEV-DIR-LH",
-      type: "fuelle",
-      brand: "Chevrolet",
-      brands: ["Chevrolet", "Suzuki"],
-      models: ["Alto", "Sprint SA310", "Swift"],
-      title: "Fuelle dirección lado conductor LH — Alto · Sprint · Swift",
-      desc: "Fuelle caja dirección lado conductor [LH].",
-      tags: ["fuelle", "direccion", "LH", "conductor"],
-      synonyms: ["alto", "sprint", "swift", "fuelle", "direccion", "chevrolet"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-fuelle-corsa-hid",
-      ref: "FU-CHEV-CORSA-HID",
-      type: "fuelle",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["Corsa", "Aveo", "Spark", "Captiva", "Onix", "Sail", "Optra"],
-      title: "Fuelle dirección hidráulica — Corsa / multi Chevy",
-      desc: "Fuelle caja dirección hidráulica Corsa y línea Aveo/Spark/Captiva/Onix/Sail/Optra (SER11006 der.).",
-      tags: ["fuelle", "direccion", "hidraulica"],
-      synonyms: ["corsa", "aveo", "spark", "captiva", "onix", "sail", "optra", "hidraulica", "fuelle", "chevrolet"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-gp-corsa",
-      ref: "GP-CHEV-CORSA",
-      type: "guardapolvo",
-      brand: "Chevrolet",
-      brands: ["Chevrolet"],
-      models: ["Chevy C2", "Corsa 1ª fase", "Corsa (98/05)", "Corsa Diesel Taxi"],
-      title: "Guardapolvo eje L/R · L/C — Corsa / Chevy C2 / Taxi",
-      desc: "G/POLVO eje. Chevy C2, Corsa fases y Corsa Diesel taxi.",
-      tags: ["guardapolvo", "taxi", "corsa"],
-      synonyms: ["corsa", "chevy c2", "taxi", "diesel", "chevrolet", "guardapolvo"],
-      waLine: "fuelles",
-    },
-    {
-      id: "chevy-gp-camioneta",
-      ref: "GP-CHEV-CAMIONETA",
-      type: "guardapolvo",
-      brand: "Chevrolet",
-      brands: ["Chevrolet", "Suzuki"],
-      models: [
-        "Trooper 2.6 4WD",
-        "LUV 1600",
-        "LUV 2200",
-        "LUV 2300",
-        "LUV 2800",
-        "Vitara SE416",
-        "D-Max RT50",
-      ],
-      title: "Guardapolvo eje — Trooper · LUV · Vitara · D-Max RT50",
-      desc: "G/POLVO eje L/R y L/C. Camionetas Chevrolet/Suzuki-line y D-Max RT50.",
-      tags: ["guardapolvo", "camioneta", "4WD"],
-      synonyms: ["trooper", "luv", "vitara", "d-max", "dmax", "rt50", "rt-50", "chevrolet", "guardapolvo"],
-      waLine: "fuelles",
-    },
-
-    // ——— HYUNDAI / KIA TAXI ———
-    {
-      id: "hyu-gp-atos-taxi",
-      ref: "GP-HYU-ATOS",
-      type: "guardapolvo",
-      brand: "Hyundai",
-      brands: ["Hyundai"],
-      models: ["Atos I", "Atos II"],
-      title: "Guardapolvo L/R y L/C con grasa — Hyundai Taxi Atos",
-      desc: "G/POLVO L/R y L/C con grasa. Hyundai Taxi Atos I/II.",
-      tags: ["guardapolvo", "taxi", "grasa", "atos"],
-      synonyms: ["atos", "hyundai", "taxi", "guardapolvo", "grasa"],
-      waLine: "fuelles",
-    },
-    {
-      id: "hyu-fuelle-i10",
-      ref: "FU-HYU-I10",
-      type: "fuelle",
-      brand: "Hyundai",
-      brands: ["Hyundai"],
-      models: ["i10"],
-      title: "Fuelle de dirección — Hyundai i10",
-      desc: "Fuelle de dirección Hyundai i10 (página Hyundai & Kia Taxi del PDF).",
-      tags: ["fuelle", "direccion", "i10"],
-      synonyms: ["i10", "hyundai", "fuelle", "direccion", "taxi"],
-      waLine: "fuelles",
-    },
-    {
-      id: "kia-gp-picanto-lr",
-      ref: "33103",
-      type: "guardapolvo",
-      brand: "Kia",
-      brands: ["Kia"],
-      models: ["Eko Taxi I/II", "Picanto I", "Picanto II Morning"],
-      title: "Guardapolvo L/R · Cód. 33103 · Ref 4411882012",
-      desc: "G/POLVO L/R. Kia Picanto / Ekotaxi / Ion. Código 33103, ref 4411882012.",
-      tags: ["guardapolvo", "L/R", "taxi", "33103"],
-      synonyms: ["picanto", "ekotaxi", "eko taxi", "ion", "morning", "kia", "33103", "4411882012", "taxi"],
-      waLine: "fuelles",
-    },
-    {
-      id: "kia-gp-picanto-lc",
-      ref: "33104",
-      type: "guardapolvo",
-      brand: "Kia",
-      brands: ["Kia"],
-      models: ["Eko Taxi I/II", "Picanto I", "Picanto II Morning"],
-      title: "Guardapolvo L/C · Cód. 33104 · Ref 4411982012",
-      desc: "G/POLVO L/C. Kia Picanto / Ekotaxi / Ion. Código 33104, ref 4411982012.",
-      tags: ["guardapolvo", "L/C", "taxi", "33104"],
-      synonyms: ["picanto", "ekotaxi", "eko taxi", "ion", "morning", "kia", "33104", "4411982012", "taxi"],
-      waLine: "fuelles",
-    },
-
-    // ——— MEZCLAS ———
-    {
-      id: "mez-pedal",
-      ref: "MEZ-PEDAL",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Caucho pedal",
-      desc: "Compuesto para forros de pedal. Buena adherencia y agarre.",
-      tags: ["mezcla", "compuesto", "pedal"],
-      synonyms: ["mezcla", "compuesto", "caucho pedal", "forro", "molino"],
-      waLine: "mezclas",
-    },
-    {
-      id: "mez-campana",
-      ref: "MEZ-CAMPANA",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Caucho campana — dureza y aguante 100",
-      desc: "Línea campana: dureza y aguante altos.",
-      tags: ["mezcla", "campana", "dureza 100"],
-      synonyms: ["campana", "dureza", "aguante", "mezcla", "compuesto"],
-      waLine: "mezclas",
-    },
-    {
-      id: "mez-nitrilo",
-      ref: "MEZ-NBR",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Caucho nitrilo (NBR)",
-      desc: "Para piezas en contacto con aceites: sellos, mangueras, diafragmas.",
-      tags: ["mezcla", "nitrilo", "NBR"],
-      synonyms: ["nitrilo", "nbr", "aceite", "sello", "mezcla"],
-      waLine: "mezclas",
-    },
-    {
-      id: "mez-rayox",
-      ref: "MEZ-RAYOX",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Caucho plomo Rayox X",
-      desc: "Línea Rayox X. Cotizar según muestra o ficha.",
-      tags: ["mezcla", "rayox", "plomo"],
-      synonyms: ["rayox", "plomo", "mezcla", "compuesto"],
-      waLine: "mezclas",
-    },
-    {
-      id: "mez-diafragmas",
-      ref: "MEZ-DIAF",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Caucho diafragmas",
-      desc: "Compuesto para diafragmas y membranas.",
-      tags: ["mezcla", "diafragmas"],
-      synonyms: ["diafragma", "membrana", "mezcla"],
-      waLine: "mezclas",
-    },
-    {
-      id: "mez-bujes",
-      ref: "MEZ-BUJES",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Caucho bujes",
-      desc: "Para bujes y topes de caucho. Suspensión y amortiguación.",
-      tags: ["mezcla", "bujes"],
-      synonyms: ["buje", "bujes", "tope", "suspension", "mezcla"],
-      waLine: "mezclas",
-    },
-    {
-      id: "mez-medida",
-      ref: "MEZ-MEDIDA",
-      type: "mezcla",
-      brand: "",
-      brands: [],
-      models: [],
-      title: "Compuestos a medida",
-      desc: "Mezclas y maquila según pieza o ficha. Pedidos B2B desde Bogotá.",
-      tags: ["mezcla", "a medida", "maquila"],
-      synonyms: ["medida", "maquila", "custom", "pedido", "mezcla", "compuesto"],
-      waLine: "mezclas",
-    },
-  ];
-
-
-  /**
-   * Flyers promocionales estilo Motorduz (estructura VA amber/dark).
-   * productMatch: filtra VA_CATALOG.products (solo refs reales).
-   * heroImage: archivo en assets/vehiculos/ (ver manifest.json).
-   */
-  const flyers = [
-    {
-      id: "chevrolet-aveo-sail-corsa",
-      brand: "Chevrolet",
-      brandId: "chevrolet",
-      title: "REPUESTOS PARA AVEO · SAIL · CORSA",
-      modelsLabel: "Aveo · Sail · Corsa",
-      models: ["Aveo", "Sail", "Corsa", "Optra"],
-      slogan: "Caucho VA — pedales y guardapolvos para el parque liviano Chevrolet",
-      heroImage: "assets/vehiculos/chevrolet-aveo.jpg",
-      heroAlt: "Chevrolet Aveo",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Chevrolet"],
-        modelKeywords: ["aveo", "sail", "corsa", "optra"],
-        includeRefs: ["CV-02", "GP-CHEV-AVEO-LC", "GP-CHEV-AVEO-LR", "GP-CHEV-CORSA", "FU-CHEV-CORSA-HID"],
-      },
-    },
-    {
-      id: "chevrolet-luv-dmax-trooper",
-      brand: "Chevrolet",
-      brandId: "chevrolet",
-      title: "REPUESTOS PARA LUV · D-MAX · TROOPER",
-      modelsLabel: "LUV · D-Max · Trooper",
-      models: ["LUV", "D-Max", "Trooper", "Dimax"],
-      slogan: "Forros y guardapolvos para camioneta — durabilidad en trabajo pesado",
-      heroImage: "assets/vehiculos/chevrolet-dmax.jpg",
-      heroAlt: "Chevrolet Colorado / D-Max line",
-      heroCaption: "ilustración de línea LUV / D-Max (Chevrolet Colorado)",
-      productMatch: {
-        brands: ["Chevrolet"],
-        modelKeywords: ["luv", "d-max", "dmax", "dimax", "trooper"],
-        includeRefs: ["CV-01", "GP-CHEV-CAMIONETA"],
-      },
-    },
-    {
-      id: "chevrolet-npr",
-      brand: "Chevrolet",
-      brandId: "chevrolet",
-      title: "REPUESTOS PARA NPR · NHR · NKR",
-      modelsLabel: "NPR · NHR · NKR",
-      models: ["NPR", "NHR", "NKR"],
-      slogan: "Pedales Brake/Clutch para camiones Chevrolet N-Series",
-      heroImage: "assets/vehiculos/chevrolet-npr.jpg",
-      heroAlt: "Camión serie NPR / Isuzu Elf",
-      heroCaption: "ilustración de línea NPR (Isuzu Elf / N-series)",
-      productMatch: {
-        brands: ["Chevrolet"],
-        modelKeywords: ["npr", "nhr", "nkr", "nqr"],
-        includeRefs: ["CV-04"],
-      },
-    },
-    {
-      id: "chevrolet-spark",
-      brand: "Chevrolet",
-      brandId: "chevrolet",
-      title: "REPUESTOS PARA SPARK · ALTO · SWIFT",
-      modelsLabel: "Spark · Alto · Swift · Sprint",
-      models: ["Spark", "Alto", "Swift", "Sprint"],
-      slogan: "Guardapolvos y fuelles dirección — línea Spark / Chevy-Suzuki",
-      heroImage: "assets/vehiculos/chevrolet-spark.jpg",
-      heroAlt: "Chevrolet Spark",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Chevrolet", "Suzuki"],
-        modelKeywords: ["spark", "alto", "swift", "sprint", "chronos", "n300", "n200"],
-        includeRefs: ["CV-03", "GP-CHEV-SPARK", "FU-CHEV-SPRINT-RH", "FU-CHEV-DIR-LH"],
-      },
-    },
-    {
-      id: "renault-logan-sandero-duster",
-      brand: "Renault",
-      brandId: "renault",
-      title: "REPUESTOS PARA LOGAN · SANDERO · DUSTER",
-      modelsLabel: "Logan · Sandero · Duster · Kangoo · Clio",
-      models: ["Logan", "Sandero", "Duster", "Kangoo", "Clio", "Symbol"],
-      slogan: "La línea más completa VA en pedales y fuelles Renault",
-      heroImage: "assets/vehiculos/renault-logan.jpg",
-      heroAlt: "Renault Logan",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Renault"],
-        modelKeywords: ["logan", "sandero", "duster", "kangoo", "clio", "symbol", "megane", "oroch", "stepway", "fluence", "scenic"],
-        includeRefs: ["CV-05", "GP-REN-EJE-LC", "GP-REN-EJE-LR", "GP-REN-EJE-LC-LH", "GP-REN-DUSTER", "FU-REN-DIR"],
-      },
-    },
-    {
-      id: "hyundai-accent-atos-i10",
-      brand: "Hyundai",
-      brandId: "hyundai",
-      title: "REPUESTOS PARA ACCENT · ATOS · I10",
-      modelsLabel: "Accent · Atos · i10 · Vision",
-      models: ["Accent", "Atos", "i10", "Vision"],
-      slogan: "Pedales taxi y fuelles dirección — calidad VA para Hyundai",
-      heroImage: "assets/vehiculos/hyundai-i10.jpg",
-      heroAlt: "Hyundai i10",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Hyundai"],
-        modelKeywords: ["accent", "atos", "i10", "vision", "taxi"],
-        includeRefs: ["CV-06", "CV-07", "CV-08", "CV-09", "GP-HYU-ATOS", "FU-HYU-I10"],
-      },
-    },
-    {
-      id: "kia-rio-picanto",
-      brand: "Kia",
-      brandId: "kia",
-      title: "REPUESTOS PARA RIO · PICANTO",
-      modelsLabel: "Rio · Picanto · Sportage · Sorento",
-      models: ["Rio", "Picanto", "Sportage", "Sorento", "Ekotaxi"],
-      slogan: "Pedales y guardapolvos taxi / Picanto — refs VA y códigos 33103/33104",
-      heroImage: "assets/vehiculos/kia-picanto.jpg",
-      heroAlt: "Kia Picanto",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Kia"],
-        modelKeywords: ["rio", "picanto", "sportage", "sorento", "eko", "lion", "ion"],
-        includeRefs: ["CV-06", "CV-07", "33103", "33104"],
-      },
-    },
-    {
-      id: "mazda-323-mazda3",
-      brand: "Mazda",
-      brandId: "mazda",
-      title: "REPUESTOS PARA 323 · MAZDA3 · 626",
-      modelsLabel: "323 · Mazda3 · 626 · B2600",
-      models: ["323", "Mazda3", "Mazda5", "626", "B2600", "MX-6"],
-      slogan: "Pedales CV y guardapolvos Mazda — ajuste preciso",
-      heroImage: "assets/vehiculos/mazda-3.jpg",
-      heroAlt: "Mazda3",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Mazda"],
-        modelKeywords: ["323", "mazda3", "mazda 3", "mazda5", "626", "b2600", "mx-6", "mx6", "asahi", "matsuri"],
-        includeRefs: ["CV-03", "CV-07", "GP-MAZ-626-LR", "GP-MAZ-626-LC", "GP-MAZ-626-ASAHI", "FU-MAZ-32113", "GP-MAZ-M3-HEX", "GP-MAZ-B2600", "GP-MAZ-COTIZAR"],
-      },
-    },
-    {
-      id: "nissan-frontier-urvan",
-      brand: "Nissan",
-      brandId: "nissan",
-      title: "REPUESTOS PARA FRONTIER · URVAN",
-      modelsLabel: "Frontier · Urvan · Busetón",
-      models: ["Frontier", "Urvan", "Busetón"],
-      slogan: "Pedales camioneta y busetón — textura rejilla y espiga",
-      heroImage: "assets/vehiculos/nissan-frontier.jpg",
-      heroAlt: "Nissan Frontier",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Nissan"],
-        modelKeywords: ["frontier", "urvan", "navarra", "navara", "buseton", "busetón"],
-        includeRefs: ["CV-10", "CV-11"],
-      },
-    },
-    {
-      id: "toyota-prado-4runner",
-      brand: "Toyota",
-      brandId: "toyota",
-      title: "REPUESTOS PARA PRADO · 4RUNNER",
-      modelsLabel: "Prado · 4Runner · Universal",
-      models: ["Prado", "4Runner", "Universal"],
-      slogan: "Pedales universales camioneta Toyota — CV-12",
-      heroImage: "assets/vehiculos/toyota-prado.jpg",
-      heroAlt: "Toyota Land Cruiser Prado",
-      heroCaption: null,
-      productMatch: {
-        brands: ["Toyota"],
-        modelKeywords: ["prado", "4runner", "runner", "hilux", "fortuner", "universal"],
-        includeRefs: ["CV-12"],
-      },
-    },
-    {
-      id: "mitsubishi-l300",
-      brand: "Mitsubishi",
-      brandId: "mitsubishi",
-      title: "REPUESTOS PARA L300",
-      modelsLabel: "L300 · Delica",
-      models: ["L300", "Delica"],
-      slogan: "Pedales espiga / chevron — CV-06 para L300",
-      heroImage: "assets/vehiculos/mitsubishi-l300.jpg",
-      heroAlt: "Mitsubishi L300 / Delica",
-      heroCaption: "ilustración de línea L300 (Delica)",
-      productMatch: {
-        brands: ["Mitsubishi"],
-        modelKeywords: ["l300", "delica"],
-        includeRefs: ["CV-06"],
-      },
-    },
-    // Brand-level flyers (overview)
-    {
-      id: "brand-chevrolet",
-      brand: "Chevrolet",
-      brandId: "chevrolet",
-      title: "REPUESTOS CHEVROLET",
-      modelsLabel: "Aveo · Spark · Sail · LUV · D-Max · NPR",
-      models: ["Aveo", "Spark", "Sail", "Corsa", "LUV", "D-Max", "Trooper", "NPR"],
-      slogan: "Pedales CV + guardapolvos eje y dirección — catálogo VA",
-      heroImage: "assets/vehiculos/chevrolet-aveo.jpg",
-      heroAlt: "Chevrolet",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Chevrolet"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-renault",
-      brand: "Renault",
-      brandId: "renault",
-      title: "REPUESTOS RENAULT",
-      modelsLabel: "Logan · Sandero · Clio · Duster · Kangoo",
-      models: ["Logan", "Sandero", "Clio", "Duster", "Kangoo"],
-      slogan: "Línea más completa de fuelles y pedales Renault",
-      heroImage: "assets/vehiculos/renault-duster.jpg",
-      heroAlt: "Renault Duster",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Renault"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-hyundai",
-      brand: "Hyundai",
-      brandId: "hyundai",
-      title: "REPUESTOS HYUNDAI",
-      modelsLabel: "Accent · Atos · i10 · Vision",
-      models: ["Accent", "Atos", "i10", "Vision"],
-      slogan: "Pedales, taxi y fuelles de dirección Hyundai",
-      heroImage: "assets/vehiculos/hyundai-i10.jpg",
-      heroAlt: "Hyundai",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Hyundai"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-kia",
-      brand: "Kia",
-      brandId: "kia",
-      title: "REPUESTOS KIA",
-      modelsLabel: "Rio · Picanto · Sportage",
-      models: ["Rio", "Picanto", "Sportage", "Sorento"],
-      slogan: "Pedales y guardapolvos taxi / Picanto",
-      heroImage: "assets/vehiculos/kia-rio.jpg",
-      heroAlt: "Kia",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Kia"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-mazda",
-      brand: "Mazda",
-      brandId: "mazda",
-      title: "REPUESTOS MAZDA",
-      modelsLabel: "323 · Mazda3 · 626 · B2600",
-      models: ["323", "Mazda3", "626", "B2600"],
-      slogan: "Pedales CV + guardapolvos 626 / Mazda3",
-      heroImage: "assets/vehiculos/mazda-3.jpg",
-      heroAlt: "Mazda",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Mazda"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-nissan",
-      brand: "Nissan",
-      brandId: "nissan",
-      title: "REPUESTOS NISSAN",
-      modelsLabel: "Frontier · Urvan · Busetón",
-      models: ["Frontier", "Urvan", "Busetón"],
-      slogan: "Pedales camioneta y busetón",
-      heroImage: "assets/vehiculos/nissan-frontier.jpg",
-      heroAlt: "Nissan",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Nissan"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-toyota",
-      brand: "Toyota",
-      brandId: "toyota",
-      title: "REPUESTOS TOYOTA",
-      modelsLabel: "Prado · 4Runner",
-      models: ["Prado", "4Runner"],
-      slogan: "Pedales universales camioneta",
-      heroImage: "assets/vehiculos/toyota-prado.jpg",
-      heroAlt: "Toyota",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Toyota"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-mitsubishi",
-      brand: "Mitsubishi",
-      brandId: "mitsubishi",
-      title: "REPUESTOS MITSUBISHI",
-      modelsLabel: "L300",
-      models: ["L300"],
-      slogan: "Pedales CV-06 · L300",
-      heroImage: "assets/vehiculos/mitsubishi-l300.jpg",
-      heroAlt: "Mitsubishi",
-      heroCaption: null,
-      isBrandOverview: true,
-      productMatch: { brands: ["Mitsubishi"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-suzuki",
-      brand: "Suzuki",
-      brandId: "suzuki",
-      title: "REPUESTOS SUZUKI",
-      modelsLabel: "Alto · Swift · Vitara · Sprint",
-      models: ["Alto", "Swift", "Vitara", "Sprint"],
-      slogan: "Línea Chevy/Suzuki — guardapolvos y fuelles",
-      heroImage: "assets/vehiculos/chevrolet-spark.jpg",
-      heroAlt: "Suzuki / Spark line",
-      heroCaption: "ilustración de línea Alto · Swift (compartida Spark)",
-      isBrandOverview: true,
-      productMatch: { brands: ["Suzuki"], modelKeywords: [], includeRefs: [] },
-    },
-    {
-      id: "brand-mercedes",
-      brand: "Mercedes-Benz",
-      brandId: "mercedes-benz",
-      title: "REPUESTOS MERCEDES-BENZ",
-      modelsLabel: "Bus / Esplínder",
-      models: ["Bus", "Esplínder"],
-      slogan: "Pedales bus / espiga CV-11",
-      heroImage: "assets/vehiculos/nissan-urvan.jpg",
-      heroAlt: "Bus / van línea",
-      heroCaption: "ilustración de línea busetón",
-      isBrandOverview: true,
-      productMatch: { brands: ["Mercedes-Benz"], modelKeywords: [], includeRefs: [] },
-    },
-  ];
-
-  global.VA_CATALOG = {
-    brands,
-    products,
-    flyers,
-    waLines: WA_LINES,
+  const VA_CATALOG = {
     waNumber: "573114560990",
+    waSecondary: "573155728160",
+    contact: {
+  "waPrimary": "573114560990",
+  "waPrimaryLabel": "+57 311 456 0990",
+  "waPrimaryName": "Jacobo Salinas",
+  "waSecondary": "573155728160",
+  "waSecondaryLabel": "+57 315 572 8160",
+  "waSecondaryName": "Esteban Salinas",
+  "tel": "811 73 57",
+  "address": "Carrera 82H #73 F41 Sur",
+  "city": "Bosa, Bogotá, Colombia"
+},
+    brandTagline: "Venta de pedales, fuelles y guardapolvos",
+    brands: [
+  {
+    "id": "chevrolet",
+    "name": "Chevrolet",
+    "monogram": "C"
+  },
+  {
+    "id": "kia",
+    "name": "Kia",
+    "monogram": "K"
+  },
+  {
+    "id": "mazda",
+    "name": "Mazda",
+    "monogram": "M"
+  },
+  {
+    "id": "toyota",
+    "name": "Toyota",
+    "monogram": "T"
+  },
+  {
+    "id": "nissan",
+    "name": "Nissan",
+    "monogram": "N"
+  },
+  {
+    "id": "hyundai",
+    "name": "Hyundai",
+    "monogram": "H"
+  },
+  {
+    "id": "renault",
+    "name": "Renault",
+    "monogram": "R"
+  }
+],
+    types: [
+  {
+    "id": "pedales",
+    "name": "Pedales",
+    "label": "Cauchos de pedal freno y embrague"
+  },
+  {
+    "id": "guardapolvos",
+    "name": "Guardapolvos",
+    "label": "Guardapolvos de eje L/C y L/R"
+  },
+  {
+    "id": "fuelles",
+    "name": "Fuelles de dirección",
+    "label": "Fuelles caja de dirección"
+  },
+  {
+    "id": "bujes",
+    "name": "Bujes",
+    "label": "Bujes y topes de caucho (vía mezclas)"
+  }
+],
+    brandLines: {
+  "chevrolet": [
+    "Sail",
+    "Optra",
+    "Aveo",
+    "Spark",
+    "Sprint",
+    "Swift",
+    "Alto",
+    "Corsa",
+    "Chevy C2",
+    "Captiva",
+    "Onix",
+    "LUV",
+    "D-Max",
+    "Trooper",
+    "Vitara",
+    "NKR",
+    "NQR",
+    "NPR",
+    "NNR"
+  ],
+  "kia": [
+    "Picanto",
+    "Rio",
+    "Eko Taxi"
+  ],
+  "mazda": [
+    "323",
+    "626",
+    "Mazda3",
+    "Mazda5",
+    "MX-6",
+    "B2600"
+  ],
+  "toyota": [
+    "Hilux",
+    "Prado",
+    "Fortuner",
+    "Land Cruiser",
+    "4Runner",
+    "Tacoma",
+    "Tundra",
+    "TXL",
+    "Burbuja"
+  ],
+  "nissan": [
+    "Frontier",
+    "Navara"
+  ],
+  "hyundai": [
+    "Atos",
+    "Accent",
+    "Elantra",
+    "i10",
+    "i30",
+    "Tucson",
+    "Santa Fe",
+    "Eko Taxi",
+    "Vision",
+    "Excel",
+    "Getz",
+    "Genesis"
+  ],
+  "renault": [
+    "Logan",
+    "Sandero",
+    "Stepway",
+    "Duster",
+    "Oroch",
+    "Clio",
+    "Megane",
+    "Twingo",
+    "Kangoo",
+    "Scenic",
+    "Symbol",
+    "Citius",
+    "Fluence",
+    "Captur",
+    "R4",
+    "R6",
+    "R9",
+    "R12",
+    "R18",
+    "R19",
+    "Express",
+    "Laguna",
+    "Espace",
+    "Trafic"
+  ]
+},
+    products: [
+  {
+    "id": "p001",
+    "ref": "P001",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P001",
+    "description": "Universal. Material 100% caucho goma. Chevrolet Sprint/Spark/Swift; Hyundai Accent; Mazda 323; entre otros.",
+    "image": "assets/productos/p001.png",
+    "pdfPage": 10,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Sprint",
+          "Spark",
+          "Swift"
+        ]
+      },
+      {
+        "brand": "hyundai",
+        "lines": [
+          "Accent"
+        ]
+      },
+      {
+        "brand": "mazda",
+        "lines": [
+          "323"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet",
+      "hyundai",
+      "mazda"
+    ],
+    "lines": [
+      "323",
+      "Accent",
+      "Spark",
+      "Sprint",
+      "Swift"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p002",
+    "ref": "P002",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P002",
+    "description": "Universal. Hyundai: Atos, Accent, Elantra, Genesis, i30, Santa Fe, Tucson; entre otros.",
+    "image": "assets/productos/p002.png",
+    "pdfPage": 11,
+    "fits": [
+      {
+        "brand": "hyundai",
+        "lines": [
+          "Atos",
+          "Accent",
+          "Elantra",
+          "Genesis",
+          "i30",
+          "Santa Fe",
+          "Tucson"
+        ]
+      }
+    ],
+    "brands": [
+      "hyundai"
+    ],
+    "lines": [
+      "Accent",
+      "Atos",
+      "Elantra",
+      "Genesis",
+      "Santa Fe",
+      "Tucson",
+      "i30"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p003",
+    "ref": "P003",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P003",
+    "description": "Universal. Renault Twingo; R19; Clio 1990–2009; Espace J11.",
+    "image": "assets/productos/p003.png",
+    "pdfPage": 12,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Twingo",
+          "R19",
+          "Clio",
+          "Espace"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Clio",
+      "Espace",
+      "R19",
+      "Twingo"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p004",
+    "ref": "P004",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P004",
+    "description": "Universal. Renault Duster, Captur, Clio, Megane, Trafic, Scenic, Vel Satis, Kangoo, Laguna, Espace.",
+    "image": "assets/productos/p004.png",
+    "pdfPage": 13,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Duster",
+          "Captur",
+          "Clio",
+          "Megane",
+          "Trafic",
+          "Scenic",
+          "Kangoo",
+          "Laguna",
+          "Espace"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Captur",
+      "Clio",
+      "Duster",
+      "Espace",
+      "Kangoo",
+      "Laguna",
+      "Megane",
+      "Scenic",
+      "Trafic"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p005",
+    "ref": "P005",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P005",
+    "description": "Universal. Hyundai Accent/Vision/Elantra/Excel/Scoupe/Tiburón/Getz; Kia Picanto/Lion/Rio/Stylus LS; Chevrolet Spark.",
+    "image": "assets/productos/p005.png",
+    "pdfPage": 14,
+    "fits": [
+      {
+        "brand": "hyundai",
+        "lines": [
+          "Accent",
+          "Vision",
+          "Elantra",
+          "Excel",
+          "Getz"
+        ]
+      },
+      {
+        "brand": "kia",
+        "lines": [
+          "Picanto",
+          "Rio"
+        ]
+      },
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Spark"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet",
+      "hyundai",
+      "kia"
+    ],
+    "lines": [
+      "Accent",
+      "Elantra",
+      "Excel",
+      "Getz",
+      "Picanto",
+      "Rio",
+      "Spark",
+      "Vision"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p006",
+    "ref": "P006",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P006",
+    "description": "Universal. Chevrolet Sail, Aveo, Optra; entre otros.",
+    "image": "assets/productos/p006.png",
+    "pdfPage": 15,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Sail",
+          "Aveo",
+          "Optra"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Aveo",
+      "Optra",
+      "Sail"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p007",
+    "ref": "P007",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P007",
+    "description": "Universal. Hyundai Accent/Elantra/Excel/Scoupe/Tiburón/Genesis Coupe/Santa Fe/Tucson/i30; Kia Picanto/Rio. (También Mitsubishi L200/Pajero en PDF — fuera del embudo de 7 marcas).",
+    "image": "assets/productos/p007.png",
+    "pdfPage": 16,
+    "fits": [
+      {
+        "brand": "hyundai",
+        "lines": [
+          "Accent",
+          "Elantra",
+          "Excel",
+          "Genesis",
+          "Santa Fe",
+          "Tucson",
+          "i30"
+        ]
+      },
+      {
+        "brand": "kia",
+        "lines": [
+          "Picanto",
+          "Rio"
+        ]
+      }
+    ],
+    "brands": [
+      "hyundai",
+      "kia"
+    ],
+    "lines": [
+      "Accent",
+      "Elantra",
+      "Excel",
+      "Genesis",
+      "Picanto",
+      "Rio",
+      "Santa Fe",
+      "Tucson",
+      "i30"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p008",
+    "ref": "P008",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P008",
+    "description": "Universal. Nissan Frontier y Navarra; camionetas Toyota.",
+    "image": "assets/productos/p008.png",
+    "pdfPage": 17,
+    "fits": [
+      {
+        "brand": "nissan",
+        "lines": [
+          "Frontier",
+          "Navara"
+        ]
+      },
+      {
+        "brand": "toyota",
+        "lines": [
+          "Hilux",
+          "Prado",
+          "Fortuner",
+          "Land Cruiser",
+          "4Runner"
+        ]
+      }
+    ],
+    "brands": [
+      "nissan",
+      "toyota"
+    ],
+    "lines": [
+      "4Runner",
+      "Fortuner",
+      "Frontier",
+      "Hilux",
+      "Land Cruiser",
+      "Navara",
+      "Prado"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p009",
+    "ref": "P009",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P009",
+    "description": "Universal. Camionetas Chevrolet D-Max, Trooper, LUV.",
+    "image": "assets/productos/p009.png",
+    "pdfPage": 18,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "D-Max",
+          "Trooper",
+          "LUV"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "D-Max",
+      "LUV",
+      "Trooper"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p010",
+    "ref": "P010",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P010",
+    "description": "Universal. Camiones de estaca Chevrolet NKR, NQR, NPR, NNR; entre otros.",
+    "image": "assets/productos/p010.png",
+    "pdfPage": 19,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "NKR",
+          "NQR",
+          "NPR",
+          "NNR"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "NKR",
+      "NNR",
+      "NPR",
+      "NQR"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "p011",
+    "ref": "P011",
+    "type": "pedales",
+    "title": "Caucho pedal freno y embrague P011",
+    "description": "Universal. Toyota Land Cruiser, 4Runner, Prado, Fortuner, TXL, Tacoma, Hilux, Tundra, Van, Burbuja; Nissan Frontier/Navarra; camiones Hino (PDF).",
+    "image": "assets/productos/p011.png",
+    "pdfPage": 20,
+    "fits": [
+      {
+        "brand": "toyota",
+        "lines": [
+          "Land Cruiser",
+          "4Runner",
+          "Prado",
+          "Fortuner",
+          "TXL",
+          "Tacoma",
+          "Hilux",
+          "Tundra",
+          "Burbuja"
+        ]
+      },
+      {
+        "brand": "nissan",
+        "lines": [
+          "Frontier",
+          "Navara"
+        ]
+      }
+    ],
+    "brands": [
+      "nissan",
+      "toyota"
+    ],
+    "lines": [
+      "4Runner",
+      "Burbuja",
+      "Fortuner",
+      "Frontier",
+      "Hilux",
+      "Land Cruiser",
+      "Navara",
+      "Prado",
+      "TXL",
+      "Tacoma",
+      "Tundra"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-lh-01",
+    "ref": "GP-REN-LH-01",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C izquierdo LH",
+    "description": "Megane I; Citius Taxi; Symbol I/II; Clio I/II; R9 (86/99).",
+    "image": "assets/productos/gp-ren-01.png",
+    "pdfPage": 3,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Megane",
+          "Citius",
+          "Symbol",
+          "Clio",
+          "R9"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Citius",
+      "Clio",
+      "Megane",
+      "R9",
+      "Symbol"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-lc-02",
+    "ref": "GP-REN-LC-02",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C sin grasa / sin abrazaderas IZQ LH",
+    "description": "Logan; Sandero I/II; Stepway I/II.",
+    "image": "assets/productos/gp-ren-02.png",
+    "pdfPage": 3,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Logan",
+          "Sandero",
+          "Stepway"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Logan",
+      "Sandero",
+      "Stepway"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-homo-03",
+    "ref": "GP-REN-HOMO-03",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C junta tipo homocinética",
+    "description": "R4 Master/Líder (86/92); R9 1.3/1.4/1.6 (86/99).",
+    "image": "assets/productos/gp-ren-03.png",
+    "pdfPage": 3,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R4",
+          "R9"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "R4",
+      "R9"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-lr-04",
+    "ref": "GP-REN-LR-04",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R caña gruesa",
+    "description": "R9 1.3/1.4 (83/85).",
+    "image": "assets/productos/gp-ren-04.png",
+    "pdfPage": 3,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R9"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "R9"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-tri-lc",
+    "ref": "GP-REN-TRI-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C junta tipo triceta",
+    "description": "R4 850/Plus; R6; R12; R18 GTL/TS; R19; Clio I.",
+    "image": "assets/productos/gpfu-ren-01.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R4",
+          "R6",
+          "R12",
+          "R18",
+          "R19",
+          "Clio"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Clio",
+      "R12",
+      "R18",
+      "R19",
+      "R4",
+      "R6"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-tri-lr",
+    "ref": "GP-REN-TRI-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R junta tipo triceta",
+    "description": "R4 850/Plus; R6; R12; R18 GTL/TS/GTX.",
+    "image": "assets/productos/gpfu-ren-02.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R4",
+          "R6",
+          "R12",
+          "R18"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "R12",
+      "R18",
+      "R4",
+      "R6"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-lr-log",
+    "ref": "GP-REN-LR-LOG",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Logan; Megane II; Sandero I; Grand Scenic; Scenic II; Stepway I.",
+    "image": "assets/productos/gpfu-ren-03.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Logan",
+          "Megane",
+          "Sandero",
+          "Scenic",
+          "Stepway"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Logan",
+      "Megane",
+      "Sandero",
+      "Scenic",
+      "Stepway"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-homo-lr",
+    "ref": "GP-REN-HOMO-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R junta tipo homocinética",
+    "description": "R4 Master/Líder; R9 1.3/1.4/1.6.",
+    "image": "assets/productos/gpfu-ren-04.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R4",
+          "R9"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "R4",
+      "R9"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-dus-lc",
+    "ref": "GP-REN-DUS-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje solo L/C",
+    "description": "Duster 1.6/2.0 2WD/4WD; Duster Oroch 2.0 (16-).",
+    "image": "assets/productos/gpfu-ren-05.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Duster",
+          "Oroch"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Duster",
+      "Oroch"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-ren-dus-lr",
+    "ref": "GP-REN-DUS-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Duster 1.6/2.0; Oroch; Fluence 1.6/2.0 (10/15).",
+    "image": "assets/productos/gpfu-ren-06.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Duster",
+          "Oroch",
+          "Fluence"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Duster",
+      "Fluence",
+      "Oroch"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-ren-r4",
+    "ref": "FU-REN-R4",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección",
+    "description": "R4 Master/Líder (86/92); R18 GTL/TS.",
+    "image": "assets/productos/gpfu-ren-07.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R4",
+          "R18"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "R18",
+      "R4"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-ren-r9",
+    "ref": "FU-REN-R9",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección",
+    "description": "R9 1.3/1.4/1.6; Twingo I/II.",
+    "image": "assets/productos/gpfu-ren-08.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "R9",
+          "Twingo"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "R9",
+      "Twingo"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-ren-clio",
+    "ref": "FU-REN-CLIO",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección",
+    "description": "Clio I/II/Campus/Style; Express Taxi; Kangoo; Megane I; Scenic I; Citius; Symbol I/II.",
+    "image": "assets/productos/gpfu-ren-09.png",
+    "pdfPage": 4,
+    "fits": [
+      {
+        "brand": "renault",
+        "lines": [
+          "Clio",
+          "Express",
+          "Kangoo",
+          "Megane",
+          "Scenic",
+          "Citius",
+          "Symbol"
+        ]
+      }
+    ],
+    "brands": [
+      "renault"
+    ],
+    "lines": [
+      "Citius",
+      "Clio",
+      "Express",
+      "Kangoo",
+      "Megane",
+      "Scenic",
+      "Symbol"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-sp-lc",
+    "ref": "GP-CHEV-SP-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C",
+    "description": "Alto 1.0; Spark I/II Chronos; Swift 1.0; Sprint SA310.",
+    "image": "assets/productos/gpfu-chev-01.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Alto",
+          "Spark",
+          "Swift",
+          "Sprint"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Alto",
+      "Spark",
+      "Sprint",
+      "Swift"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-sp-lr",
+    "ref": "GP-CHEV-SP-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Alto; Spark I/II; Sprint; Swift 1.0/1.3/1.6.",
+    "image": "assets/productos/gpfu-chev-02.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Alto",
+          "Spark",
+          "Swift",
+          "Sprint"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Alto",
+      "Spark",
+      "Sprint",
+      "Swift"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-av-lr",
+    "ref": "GP-CHEV-AV-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Aveo T200/T250; Captiva; Optra J200; Sail 1.4 (12-).",
+    "image": "assets/productos/gpfu-chev-03.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Aveo",
+          "Captiva",
+          "Optra",
+          "Sail"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Aveo",
+      "Captiva",
+      "Optra",
+      "Sail"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-av-lc",
+    "ref": "GP-CHEV-AV-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C",
+    "description": "Aveo T200/T250; Optra J200; Sail 1.4 (12-).",
+    "image": "assets/productos/gpfu-chev-04.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Aveo",
+          "Optra",
+          "Sail"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Aveo",
+      "Optra",
+      "Sail"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-co-lr",
+    "ref": "GP-CHEV-CO-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Chevy C2 1.6 auto; Corsa 1.3/1.4/1.6; Corsa Diesel Taxi.",
+    "image": "assets/productos/gpfu-chev-05.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Chevy C2",
+          "Corsa"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Chevy C2",
+      "Corsa"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-co-lc",
+    "ref": "GP-CHEV-CO-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C",
+    "description": "Chevy C2; Corsa fases; Corsa Diesel Taxi.",
+    "image": "assets/productos/gpfu-chev-06.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Chevy C2",
+          "Corsa"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Chevy C2",
+      "Corsa"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-chev-pas",
+    "ref": "FU-CHEV-PAS",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección lado pasajero",
+    "description": "Alto; Sprint SA310; Swift 1.0/1.3/1.6.",
+    "image": "assets/productos/gpfu-chev-07.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Alto",
+          "Sprint",
+          "Swift"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Alto",
+      "Sprint",
+      "Swift"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-chev-lh",
+    "ref": "FU-CHEV-LH",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección lado conductor LH",
+    "description": "Alto; Sprint SA310; Swift 1.0/1.3/1.6.",
+    "image": "assets/productos/gpfu-chev-08.png",
+    "pdfPage": 5,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Alto",
+          "Sprint",
+          "Swift"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Alto",
+      "Sprint",
+      "Swift"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-chev-corsa",
+    "ref": "FU-CHEV-CORSA",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección hidráulica Corsa",
+    "description": "Chevrolet Corsa hidráulica.",
+    "image": "assets/productos/fu-chev-02.png",
+    "pdfPage": 6,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Corsa"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Corsa"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-chev-ser",
+    "ref": "FU-CHEV-SER11006",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección IZQ/DER SER11006",
+    "description": "Aveo / Spark / Captiva / Onix / Sail / Optra. Ref. SER11006.",
+    "image": "assets/productos/fu-chev-03.png",
+    "pdfPage": 6,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Aveo",
+          "Spark",
+          "Captiva",
+          "Onix",
+          "Sail",
+          "Optra"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "Aveo",
+      "Captiva",
+      "Onix",
+      "Optra",
+      "Sail",
+      "Spark"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-luv-lr",
+    "ref": "GP-CHEV-LUV-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Trooper 2.6 4WD; LUV 2200/2300/2800 TFS 4WD.",
+    "image": "assets/productos/gp-chevcam-01.png",
+    "pdfPage": 7,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Trooper",
+          "LUV"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "LUV",
+      "Trooper"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-luv-lc",
+    "ref": "GP-CHEV-LUV-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C",
+    "description": "Trooper; Vitara SE416; LUV 1600/2200/2300/2800.",
+    "image": "assets/productos/gp-chevcam-02.png",
+    "pdfPage": 7,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "Trooper",
+          "Vitara",
+          "LUV"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "LUV",
+      "Trooper",
+      "Vitara"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-dm-r",
+    "ref": "GP-CHEV-DM-R",
+    "type": "guardapolvos",
+    "title": "Guardapolvo eje lado rueda",
+    "description": "LUV D-Max RT-50 2.5 TD 4WD (14-).",
+    "image": "assets/productos/gp-chevcam-03.png",
+    "pdfPage": 7,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "D-Max",
+          "LUV"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "D-Max",
+      "LUV"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-chev-dm-c",
+    "ref": "GP-CHEV-DM-C",
+    "type": "guardapolvos",
+    "title": "Guardapolvo eje lado caja",
+    "description": "D-Max RT50 2.5 TD 4WD (14-).",
+    "image": "assets/productos/gp-chevcam-04.png",
+    "pdfPage": 7,
+    "fits": [
+      {
+        "brand": "chevrolet",
+        "lines": [
+          "D-Max"
+        ]
+      }
+    ],
+    "brands": [
+      "chevrolet"
+    ],
+    "lines": [
+      "D-Max"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-maz-626-lr",
+    "ref": "GP-MAZ-626-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R con grasa + abrazaderas",
+    "description": "626 Nueva Raza 1.8 (84/88); MX-6 2.0 16v (93/97).",
+    "image": "assets/productos/gpfu-maz-01.png",
+    "pdfPage": 8,
+    "fits": [
+      {
+        "brand": "mazda",
+        "lines": [
+          "626",
+          "MX-6"
+        ]
+      }
+    ],
+    "brands": [
+      "mazda"
+    ],
+    "lines": [
+      "626",
+      "MX-6"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-maz-626-lc",
+    "ref": "GP-MAZ-626-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C con grasa + abrazaderas",
+    "description": "626 Nueva Raza 1.8 (84/88).",
+    "image": "assets/productos/gpfu-maz-02.png",
+    "pdfPage": 8,
+    "fits": [
+      {
+        "brand": "mazda",
+        "lines": [
+          "626"
+        ]
+      }
+    ],
+    "brands": [
+      "mazda"
+    ],
+    "lines": [
+      "626"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-maz-626-kit",
+    "ref": "GP-MAZ-626-KIT",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R + L/C con grasa + abrazaderas",
+    "description": "626 Asahi / Matsuri / Nuevo Milenio.",
+    "image": "assets/productos/gpfu-maz-03.png",
+    "pdfPage": 8,
+    "fits": [
+      {
+        "brand": "mazda",
+        "lines": [
+          "626"
+        ]
+      }
+    ],
+    "brands": [
+      "mazda"
+    ],
+    "lines": [
+      "626"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-maz-32113",
+    "ref": "FU-MAZ-32113",
+    "type": "fuelles",
+    "title": "Fuelle caja dirección COD 32113 / REF GJ2232125",
+    "description": "MX-6 2.0 16v (93/97).",
+    "image": "assets/productos/gpfu-maz-04.png",
+    "pdfPage": 8,
+    "fits": [
+      {
+        "brand": "mazda",
+        "lines": [
+          "MX-6"
+        ]
+      }
+    ],
+    "brands": [
+      "mazda"
+    ],
+    "lines": [
+      "MX-6"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-maz-m3",
+    "ref": "GP-MAZ-M3-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C base hexagonal con grasa + abrazaderas",
+    "description": "Mazda3 / All New; Mazda5 / All New (trans. automática).",
+    "image": "assets/productos/gpfu-maz-05.png",
+    "pdfPage": 8,
+    "fits": [
+      {
+        "brand": "mazda",
+        "lines": [
+          "Mazda3",
+          "Mazda5"
+        ]
+      }
+    ],
+    "brands": [
+      "mazda"
+    ],
+    "lines": [
+      "Mazda3",
+      "Mazda5"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-maz-b2600",
+    "ref": "GP-MAZ-B2600",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R + L/C con grasa + abrazaderas",
+    "description": "B2600 2.6 12v 4WD (92/07).",
+    "image": "assets/productos/gpfu-maz-03.png",
+    "pdfPage": 8,
+    "fits": [
+      {
+        "brand": "mazda",
+        "lines": [
+          "B2600"
+        ]
+      }
+    ],
+    "brands": [
+      "mazda"
+    ],
+    "lines": [
+      "B2600"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-hykia-lr",
+    "ref": "GP-HYKIA-LR",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/R",
+    "description": "Atos I/II; Eko Taxi I/II; Picanto I / Picanto II Morning.",
+    "image": "assets/productos/gpfu-hykia-03.png",
+    "pdfPage": 9,
+    "fits": [
+      {
+        "brand": "hyundai",
+        "lines": [
+          "Atos",
+          "Eko Taxi"
+        ]
+      },
+      {
+        "brand": "kia",
+        "lines": [
+          "Picanto",
+          "Eko Taxi"
+        ]
+      }
+    ],
+    "brands": [
+      "hyundai",
+      "kia"
+    ],
+    "lines": [
+      "Atos",
+      "Eko Taxi",
+      "Picanto"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "gp-hykia-lc",
+    "ref": "GP-HYKIA-LC",
+    "type": "guardapolvos",
+    "title": "G/Polvo eje L/C",
+    "description": "Atos I/II; Eko Taxi I/II; Picanto I / II Morning.",
+    "image": "assets/productos/gpfu-hykia-04.png",
+    "pdfPage": 9,
+    "fits": [
+      {
+        "brand": "hyundai",
+        "lines": [
+          "Atos",
+          "Eko Taxi"
+        ]
+      },
+      {
+        "brand": "kia",
+        "lines": [
+          "Picanto",
+          "Eko Taxi"
+        ]
+      }
+    ],
+    "brands": [
+      "hyundai",
+      "kia"
+    ],
+    "lines": [
+      "Atos",
+      "Eko Taxi",
+      "Picanto"
+    ],
+    "material": "100% caucho"
+  },
+  {
+    "id": "fu-hyu-i10",
+    "ref": "FU-HYU-I10",
+    "type": "fuelles",
+    "title": "Fuelle de dirección Hyundai i10",
+    "description": "Hyundai i10.",
+    "image": "assets/productos/gpfu-hykia-05.png",
+    "pdfPage": 9,
+    "fits": [
+      {
+        "brand": "hyundai",
+        "lines": [
+          "i10"
+        ]
+      }
+    ],
+    "brands": [
+      "hyundai"
+    ],
+    "lines": [
+      "i10"
+    ],
+    "material": "100% caucho"
+  }
+],
+    mezclas: [
+  {
+    "id": "mez-bujes",
+    "title": "Bujes",
+    "desc": "Mezclas para bujes y topes de caucho."
+  },
+  {
+    "id": "mez-guardapolvos",
+    "title": "Guardapolvos",
+    "desc": "Compuestos para guardapolvos de eje."
+  },
+  {
+    "id": "mez-diafragmas",
+    "title": "Diafragmas",
+    "desc": "Mezclas para diafragmas y membranas."
+  },
+  {
+    "id": "mez-fuelles",
+    "title": "Fuelles",
+    "desc": "Compuestos para fuelles de dirección."
+  },
+  {
+    "id": "mez-nitrilo",
+    "title": "Nitrilo y caucho de color",
+    "desc": "Mezclas especiales nitrilo (NBR) y caucho de color."
+  },
+  {
+    "id": "mez-pedal",
+    "title": "Caucho pedal",
+    "desc": "Compuesto para forros de pedal."
+  },
+  {
+    "id": "mez-medida",
+    "title": "Compuestos a medida",
+    "desc": "Maquila según pieza o ficha. B2B Bogotá."
+  }
+],
+    waMessage(product) {
+      if (!product) return "Hola estoy muy interesado en sus productos.";
+      return "Hola, quiero cotizar " + product.title + " (ref " + product.ref + ").";
+    },
+    waUrl(msg) {
+      return "https://wa.me/" + this.waNumber + "?text=" + encodeURIComponent(msg || this.waMessage(null));
+    },
+    productFitsBrandLine(p, brandId, line) {
+      if (!brandId) return true;
+      var fit = (p.fits || []).find(function (f) { return f.brand === brandId; });
+      if (!fit) return false;
+      if (!line) return true;
+      return fit.lines.indexOf(line) !== -1;
+    },
+    productsFor(brandId, line, typeId) {
+      var self = this;
+      return this.products.filter(function (p) {
+        if (!self.productFitsBrandLine(p, brandId, line)) return false;
+        if (typeId && p.type !== typeId) return false;
+        return true;
+      });
+    },
+    linesFor(brandId) {
+      return this.brandLines[brandId] || [];
+    },
+    typesFor(brandId, line) {
+      var set = {};
+      this.productsFor(brandId, line, null).forEach(function (p) { set[p.type] = true; });
+      return this.types.filter(function (t) { return set[t.id]; });
+    },
+    getProduct(id) {
+      return this.products.find(function (p) { return p.id === id; });
+    },
+    getBrand(id) {
+      return this.brands.find(function (b) { return b.id === id; });
+    },
+    getType(id) {
+      return this.types.find(function (t) { return t.id === id; });
+    }
   };
+  global.VA_CATALOG = VA_CATALOG;
 })(typeof window !== "undefined" ? window : globalThis);

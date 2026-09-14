@@ -1,3 +1,5 @@
-# Vencedores Autopartes — Catálogo B2B
+# Vencedores Autopartes — catálogo web
 
-Cotización WhatsApp: +57 311 456 0990 (Jacobo Salinas).
+Sitio estático azul/gris. Embudo: marca → línea → tipo → producto → WhatsApp.
+
+Fuente de productos: REF_CATALOGO_USUARIO.pdf (Cauchos Vencedor).

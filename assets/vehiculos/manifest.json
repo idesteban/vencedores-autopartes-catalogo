@@ -9,42 +9,6 @@
     "caption": null
   },
   {
-    "slug": "chevrolet-corsa",
-    "brand": "Chevrolet",
-    "model": "Corsa",
-    "file": "chevrolet-corsa.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons (sibling fallback if caption set)",
-    "caption": "ilustración de línea Corsa (foto Aveo)"
-  },
-  {
-    "slug": "chevrolet-dmax",
-    "brand": "Chevrolet",
-    "model": "D-Max",
-    "file": "chevrolet-dmax.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A%2715_Chevrolet_Colorado_Crew_Cab.jpg",
-    "licenseNote": "Public domain via Wikimedia Commons",
-    "caption": "ilustración de línea LUV/D-Max (Chevrolet Colorado)"
-  },
-  {
-    "slug": "chevrolet-npr",
-    "brand": "Chevrolet",
-    "model": "NPR",
-    "file": "chevrolet-npr.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2002_Isuzu_Elf_01.jpg",
-    "licenseNote": "CC BY-SA 3.0 via Wikimedia Commons",
-    "caption": "ilustración de línea NPR (Isuzu Elf)"
-  },
-  {
-    "slug": "chevrolet-sail",
-    "brand": "Chevrolet",
-    "model": "Sail",
-    "file": "chevrolet-sail.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons",
-    "caption": null
-  },
-  {
     "slug": "chevrolet-spark",
     "brand": "Chevrolet",
     "model": "Spark",
@@ -60,123 +24,24 @@
     "file": "chevrolet-trooper.jpg",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AISUZU_TROOPER_SECOND_GENERATION_HONG_KONG.jpg",
     "licenseNote": "CC BY-SA 4.0 via Wikimedia Commons",
-    "caption": "ilustración de línea Trooper (Isuzu Trooper)"
-  },
-  {
-    "slug": "hyundai-accent",
-    "brand": "Hyundai",
-    "model": "Accent",
-    "file": "hyundai-accent.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2012_Hyundai_Accent_%28RB%29_Premium_sedan_%282018-10-01%29_01.jpg",
-    "licenseNote": "CC BY-SA 4.0 via Wikimedia Commons",
     "caption": null
   },
   {
-    "slug": "hyundai-atos",
-    "brand": "Hyundai",
-    "model": "Atos",
-    "file": "hyundai-atos.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2002_Hyundai_Atoz_1.0_Front.jpg",
-    "licenseNote": "CC BY-SA 4.0 via Wikimedia Commons",
+    "slug": "chevrolet-npr",
+    "brand": "Chevrolet",
+    "model": "NPR",
+    "file": "chevrolet-npr.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2002_Isuzu_Elf_01.jpg",
+    "licenseNote": "CC BY-SA 3.0 via Wikimedia Commons",
     "caption": null
   },
   {
-    "slug": "hyundai-i10",
-    "brand": "Hyundai",
-    "model": "i10",
-    "file": "hyundai-i10.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "kia-picanto",
-    "brand": "Kia",
-    "model": "Picanto",
-    "file": "kia-picanto.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "kia-rio",
-    "brand": "Kia",
-    "model": "Rio",
-    "file": "kia-rio.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2012_Kia_Rio_5-Door_LX_in_Bright_Silver_Metallic%2C_front_left%2C_2024-05-27.jpg",
-    "licenseNote": "CC BY-SA 4.0 via Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "kia-sportage",
-    "brand": "Kia",
-    "model": "Sportage",
-    "file": "kia-sportage.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2010_Kia_Sportage_%28SL%29_Si_wagon_%282011-08-17%29_01.jpg",
-    "licenseNote": "Public domain via Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "mazda-3",
-    "brand": "Mazda",
-    "model": "Mazda3",
-    "file": "mazda-3.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "mazda-323",
-    "brand": "Mazda",
-    "model": "323",
-    "file": "mazda-323.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons (sibling fallback if caption set)",
-    "caption": "ilustración de línea 323 (foto Mazda3)"
-  },
-  {
-    "slug": "mazda-626",
-    "brand": "Mazda",
-    "model": "626",
-    "file": "mazda-626.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons (sibling fallback if caption set)",
-    "caption": "ilustración de línea 626 (foto Mazda3)"
-  },
-  {
-    "slug": "mitsubishi-l300",
-    "brand": "Mitsubishi",
-    "model": "L300",
-    "file": "mitsubishi-l300.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMITSUBISHI_DELICA_L300_VAN_MACAU.jpg",
-    "licenseNote": "CC BY-SA 4.0 via Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "nissan-frontier",
-    "brand": "Nissan",
-    "model": "Frontier",
-    "file": "nissan-frontier.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A%2709_Nissan_Frontier_Crew_Cab_%28MIAS%29.JPG",
-    "licenseNote": "Public domain via Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "nissan-urvan",
-    "brand": "Nissan",
-    "model": "Urvan / NV350",
-    "file": "nissan-urvan.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2012-2017_Nissan_NV350_Caravan.jpg",
-    "licenseNote": "CC0 via Wikimedia Commons",
-    "caption": null
-  },
-  {
-    "slug": "renault-clio",
+    "slug": "renault-logan",
     "brand": "Renault",
-    "model": "Clio",
-    "file": "renault-clio.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ARenault_Clio_20th_%28III%2C_Facelift%29_%E2%80%93_Frontansicht%2C_11._Juni_2011%2C_W%C3%BClfrath.jpg",
-    "licenseNote": "CC BY-SA 3.0 de via Wikimedia Commons",
+    "model": "Logan",
+    "file": "renault-logan.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2011_Renault_Logan_Silverline_side.jpg",
+    "licenseNote": "CC0 via Wikimedia Commons",
     "caption": null
   },
   {
@@ -189,48 +54,30 @@
     "caption": null
   },
   {
-    "slug": "renault-kangoo",
-    "brand": "Renault",
-    "model": "Kangoo",
-    "file": "renault-kangoo.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons (sibling fallback if caption set)",
-    "caption": "ilustración de línea Kangoo (foto Clio)"
-  },
-  {
-    "slug": "renault-logan",
-    "brand": "Renault",
-    "model": "Logan",
-    "file": "renault-logan.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A2011_Renault_Logan_Silverline_side.jpg",
-    "licenseNote": "CC0 via Wikimedia Commons",
+    "slug": "chevrolet-sail",
+    "brand": "Chevrolet",
+    "model": "Sail",
+    "file": "chevrolet-sail.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chevrolet_Sail.jpg",
+    "licenseNote": "Wikimedia Commons",
     "caption": null
   },
   {
-    "slug": "renault-sandero",
-    "brand": "Renault",
-    "model": "Sandero",
-    "file": "renault-sandero.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons (sibling fallback if caption set)",
-    "caption": "ilustración de línea Sandero (foto Logan)"
+    "slug": "hyundai-atos",
+    "brand": "Hyundai",
+    "model": "Atos",
+    "file": "hyundai-atos.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyundai_Atos.jpg",
+    "licenseNote": "Wikimedia Commons",
+    "caption": null
   },
   {
-    "slug": "toyota-4runner",
-    "brand": "Toyota",
-    "model": "4Runner",
-    "file": "toyota-4runner.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/",
-    "licenseNote": "Wikimedia Commons (sibling fallback if caption set)",
-    "caption": "ilustración de línea 4Runner (foto Prado)"
-  },
-  {
-    "slug": "toyota-prado",
-    "brand": "Toyota",
-    "model": "Prado",
-    "file": "toyota-prado.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ATOYOTA_LAND_CRUISER_PRADO_%28J150%29_China.jpg",
-    "licenseNote": "CC BY-SA 4.0 via Wikimedia Commons",
+    "slug": "hyundai-i10",
+    "brand": "Hyundai",
+    "model": "i10",
+    "file": "hyundai-i10.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyundai_Grand_i10_1.0_E_-_Front.jpg",
+    "licenseNote": "Wikimedia Commons",
     "caption": null
   }
 ]
