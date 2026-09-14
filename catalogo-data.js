@@ -1,8 +1,8 @@
 // cache 20260914h
 /**
  * Vencedores Autopartes — embudo marca → línea → tipo → producto
- * Fuente: REF_CATALOGO_USUARIO.pdf + CATALOGO_COMPLETO + LISTADO_PEDALES.
- * Sin inventar SKUs; líneas empty-state = PDF TOC sin GP/FU/pedal COD en embudo aún.
+ * brandLines: INR Catalogodepartes.pdf 2025 (no encoger).
+ * fits: solo modelos del mismo COD/listado PDF; sin contaminación cruzada.
  */
 (function (global) {
   const VA_CATALOG = {
@@ -25,150 +25,43 @@
     "id": "chevrolet",
     "name": "Chevrolet",
     "monogram": "C",
-    "logo": "assets/marcas/chevrolet.png",
-    "lines": [
-      "Alto",
-      "Aveo",
-      "Captiva",
-      "Chevy C2",
-      "Corsa",
-      "D-Max",
-      "LUV",
-      "NKR",
-      "NNR",
-      "NPR",
-      "NQR",
-      "NHR",
-      "Onix",
-      "Optra",
-      "Sail",
-      "Spark",
-      "Spark GT",
-      "Sprint",
-      "Swift",
-      "Tracker",
-      "Trooper",
-      "Vitara",
-      "N200/N300"
-    ]
+    "logo": "assets/marcas/chevrolet.png"
   },
   {
     "id": "kia",
     "name": "Kia",
     "monogram": "K",
-    "logo": "assets/marcas/kia.png",
-    "lines": [
-      "Picanto",
-      "Rio",
-      "Eko Taxi",
-      "Ion"
-    ]
+    "logo": "assets/marcas/kia.png"
   },
   {
     "id": "mazda",
     "name": "Mazda",
     "monogram": "M",
-    "logo": "assets/marcas/mazda.png",
-    "lines": [
-      "323",
-      "626",
-      "Mazda3",
-      "Mazda5",
-      "MX-6",
-      "B2600"
-    ]
+    "logo": "assets/marcas/mazda.png"
   },
   {
     "id": "toyota",
     "name": "Toyota",
     "monogram": "T",
-    "logo": "assets/marcas/toyota.png",
-    "lines": [
-      "Hilux",
-      "Prado",
-      "Fortuner",
-      "Land Cruiser",
-      "4Runner",
-      "Tacoma",
-      "Tundra",
-      "TXL",
-      "Burbuja"
-    ]
+    "logo": "assets/marcas/toyota.png"
   },
   {
     "id": "nissan",
     "name": "Nissan",
     "monogram": "N",
-    "logo": "assets/marcas/nissan.png",
-    "lines": [
-      "Frontier",
-      "Navara"
-    ]
+    "logo": "assets/marcas/nissan.png"
   },
   {
     "id": "hyundai",
     "name": "Hyundai",
     "monogram": "H",
-    "logo": "assets/marcas/hyundai.png",
-    "lines": [
-      "Atos",
-      "Accent",
-      "Elantra",
-      "i30",
-      "Tucson",
-      "Santa Fe",
-      "Eko Taxi",
-      "Vision",
-      "Excel",
-      "Getz",
-      "Genesis",
-      "Scoupe",
-      "Tiburon",
-      "Sonata"
-    ]
+    "logo": "assets/marcas/hyundai.png"
   },
   {
     "id": "renault",
     "name": "Renault",
     "monogram": "R",
-    "logo": "assets/marcas/renault.png",
-    "lines": [
-      "Logan",
-      "Sandero",
-      "Stepway",
-      "Duster",
-      "Oroch",
-      "Clio",
-      "Megane",
-      "Twingo",
-      "Kangoo",
-      "Scenic",
-      "Symbol",
-      "Citius",
-      "Fluence",
-      "Captur",
-      "Vel Satis",
-      "R4",
-      "R6",
-      "R9",
-      "R12",
-      "R18",
-      "R19",
-      "Express",
-      "Laguna",
-      "Espace",
-      "Trafic"
-    ]
-  },
-  {
-    "id": "mitsubishi",
-    "name": "Mitsubishi",
-    "monogram": "Mi",
-    "logo": "assets/marcas/mitsubishi.png",
-    "lines": [
-      "L200",
-      "Pajero"
-    ]
+    "logo": "assets/marcas/renault.png"
   }
 ],
     types: [
@@ -388,27 +281,9 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "Almera",
-          "Altima",
-          "Frontier",
-          "Juke",
-          "Kicks",
-          "March",
-          "Micra",
-          "Murano",
-          "Navara",
-          "Note",
-          "NP300",
-          "Pathfinder",
-          "Patrol",
-          "Qashqai",
-          "Sentra",
-          "Sunny",
-          "Tiida",
-          "Urvan",
-          "Versa",
-          "X-Trail",
-          "Xterra"
+          "Spark",
+          "Sprint",
+          "Swift"
         ]
       },
       {
@@ -432,27 +307,9 @@
     "lines": [
       "323",
       "Accent",
-      "Almera",
-      "Altima",
-      "Frontier",
-      "Juke",
-      "Kicks",
-      "March",
-      "Micra",
-      "Murano",
-      "Navara",
-      "Note",
-      "NP300",
-      "Pathfinder",
-      "Patrol",
-      "Qashqai",
-      "Sentra",
-      "Sunny",
-      "Tiida",
-      "Urvan",
-      "Versa",
-      "X-Trail",
-      "Xterra"
+      "Spark",
+      "Sprint",
+      "Swift"
     ],
     "material": "100% caucho"
   },
@@ -471,7 +328,6 @@
           "Accent",
           "Atos",
           "Elantra",
-          "Genesis",
           "i30",
           "Santa Fe",
           "Tucson"
@@ -485,7 +341,6 @@
       "Accent",
       "Atos",
       "Elantra",
-      "Genesis",
       "i30",
       "Santa Fe",
       "Tucson"
@@ -504,15 +359,8 @@
       {
         "brand": "renault",
         "lines": [
-          "Citius",
-          "Citius Taxi",
           "Clio",
-          "Espace",
-          "Express",
-          "Express Taxi",
-          "Kangoo",
           "R19",
-          "Symbol",
           "Twingo"
         ]
       }
@@ -522,7 +370,6 @@
     ],
     "lines": [
       "Clio",
-      "Espace",
       "R19",
       "Twingo"
     ],
@@ -541,21 +388,13 @@
         "brand": "renault",
         "lines": [
           "Captur",
-          "Citius",
-          "Citius Taxi",
           "Clio",
           "Duster",
-          "Espace",
-          "Express",
-          "Express Taxi",
           "Kangoo",
           "Laguna",
           "Megane",
-          "Oroch",
           "Scenic",
-          "Symbol",
-          "Trafic",
-          "Vel Satis"
+          "Trafic"
         ]
       }
     ],
@@ -566,13 +405,11 @@
       "Captur",
       "Clio",
       "Duster",
-      "Espace",
       "Kangoo",
       "Laguna",
       "Megane",
       "Scenic",
-      "Trafic",
-      "Vel Satis"
+      "Trafic"
     ],
     "material": "100% caucho"
   },
@@ -581,7 +418,7 @@
     "ref": "P005",
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P005",
-    "description": "Universal. Hyundai Accent/Vision/Elantra/Excel/Scoupe/Tiburón/Getz; Kia Picanto/Ion/Rio; Chevrolet Spark. Evidencia: LISTADO_PEDALES + PDF Kia Picanto/EkoTaxi/Ion.",
+    "description": "Universal. Hyundai Accent/Vision/Elantra/Excel/Scoupe/Tiburón/Getz; Kia Picanto/Lion/Rio/Stylus LS; Chevrolet Spark.",
     "image": "assets/productos/p005.png",
     "pdfPage": 14,
     "fits": [
@@ -592,8 +429,6 @@
           "Elantra",
           "Excel",
           "Getz",
-          "Scoupe",
-          "Tiburon",
           "Vision"
         ]
       },
@@ -610,9 +445,7 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "Alto",
-          "Spark",
-          "Spark GT"
+          "Spark"
         ]
       }
     ],
@@ -623,15 +456,15 @@
     ],
     "lines": [
       "Accent",
+      "Eko Taxi",
       "Elantra",
       "Excel",
       "Getz",
       "Ion",
+      "Morning",
       "Picanto",
       "Rio",
-      "Scoupe",
       "Spark",
-      "Tiburon",
       "Vision"
     ],
     "material": "100% caucho"
@@ -669,7 +502,7 @@
     "ref": "P007",
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P007",
-    "description": "Universal. Hyundai Accent/Elantra/Excel/Scoupe/Tiburón/Genesis/Santa Fe/Tucson/i30/Sonata; Kia Picanto/Ion/Rio; Mitsubishi L200/Pajero (LISTADO_PEDALES).",
+    "description": "Universal. Hyundai Accent/Elantra/Excel/Santa Fe/Tucson/i30/Sonata; Kia Picanto/Ion/Morning/Eko Taxi/Rio. (Mitsubishi L200/Pajero en LISTADO_PEDALES — fase 2 fuera embudo).",
     "image": "assets/productos/p007.png",
     "pdfPage": 16,
     "fits": [
@@ -679,12 +512,9 @@
           "Accent",
           "Elantra",
           "Excel",
-          "Genesis",
           "i30",
           "Santa Fe",
-          "Scoupe",
           "Sonata",
-          "Tiburon",
           "Tucson"
         ]
       },
@@ -697,35 +527,24 @@
           "Picanto",
           "Rio"
         ]
-      },
-      {
-        "brand": "mitsubishi",
-        "lines": [
-          "L200",
-          "Pajero"
-        ]
       }
     ],
     "brands": [
       "hyundai",
-      "kia",
-      "mitsubishi"
+      "kia"
     ],
     "lines": [
       "Accent",
+      "Eko Taxi",
       "Elantra",
       "Excel",
-      "Genesis",
       "i30",
       "Ion",
-      "L200",
-      "Pajero",
+      "Morning",
       "Picanto",
       "Rio",
       "Santa Fe",
-      "Scoupe",
       "Sonata",
-      "Tiburon",
       "Tucson"
     ],
     "material": "100% caucho"
@@ -735,7 +554,7 @@
     "ref": "P008",
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P008",
-    "description": "Universal. Nissan Frontier y Navarra; camionetas Toyota.",
+    "description": "Universal. Nissan Frontier/Navara/NP300; Toyota Hilux/Prado/Fortuner/Land Cruiser/4Runner. Evidencia LISTADO_PEDALES + INR NP300 Frontier.",
     "image": "assets/productos/p008.png",
     "pdfPage": 17,
     "fits": [
@@ -769,6 +588,7 @@
       "Hilux",
       "Land Cruiser",
       "Navara",
+      "NP300",
       "Prado"
     ],
     "material": "100% caucho"
@@ -836,7 +656,7 @@
     "ref": "P011",
     "type": "pedales",
     "title": "Caucho pedal freno y embrague P011",
-    "description": "Universal. Toyota Land Cruiser, 4Runner, Prado, Fortuner, TXL, Tacoma, Hilux, Tundra, Van, Burbuja; Nissan Frontier/Navarra; camiones Hino (PDF).",
+    "description": "Universal. Toyota Hilux/Prado/Fortuner/Land Cruiser/4Runner; Nissan Frontier/Navara/NP300.",
     "image": "assets/productos/p011.png",
     "pdfPage": 20,
     "fits": [
@@ -844,14 +664,10 @@
         "brand": "toyota",
         "lines": [
           "4Runner",
-          "Burbuja",
           "Fortuner",
           "Hilux",
           "Land Cruiser",
-          "Prado",
-          "Tacoma",
-          "Tundra",
-          "TXL"
+          "Prado"
         ]
       },
       {
@@ -869,16 +685,13 @@
     ],
     "lines": [
       "4Runner",
-      "Burbuja",
       "Fortuner",
       "Frontier",
       "Hilux",
       "Land Cruiser",
       "Navara",
-      "Prado",
-      "Tacoma",
-      "Tundra",
-      "TXL"
+      "NP300",
+      "Prado"
     ],
     "material": "100% caucho"
   },
@@ -894,12 +707,8 @@
       {
         "brand": "renault",
         "lines": [
-          "Citius",
           "Citius Taxi",
           "Clio",
-          "Express",
-          "Express Taxi",
-          "Kangoo",
           "Megane",
           "R9",
           "Symbol"
@@ -910,7 +719,7 @@
       "renault"
     ],
     "lines": [
-      "Citius",
+      "Citius Taxi",
       "Clio",
       "Megane",
       "R9",
@@ -1008,18 +817,12 @@
       {
         "brand": "renault",
         "lines": [
-          "Citius",
-          "Citius Taxi",
           "Clio",
-          "Express",
-          "Express Taxi",
-          "Kangoo",
           "R12",
           "R18",
           "R19",
           "R4",
-          "R6",
-          "Symbol"
+          "R6"
         ]
       }
     ],
@@ -1242,10 +1045,8 @@
       {
         "brand": "renault",
         "lines": [
-          "Citius",
           "Citius Taxi",
           "Clio",
-          "Express",
           "Express Taxi",
           "Kangoo",
           "Megane",
@@ -1258,9 +1059,9 @@
       "renault"
     ],
     "lines": [
-      "Citius",
+      "Citius Taxi",
       "Clio",
-      "Express",
+      "Express Taxi",
       "Kangoo",
       "Megane",
       "Scenic",
@@ -1282,7 +1083,6 @@
         "lines": [
           "Alto",
           "Spark",
-          "Spark GT",
           "Sprint",
           "Swift"
         ]
@@ -1313,7 +1113,6 @@
         "lines": [
           "Alto",
           "Spark",
-          "Spark GT",
           "Sprint",
           "Swift"
         ]
@@ -1452,7 +1251,9 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "Sprint"
+          "Alto",
+          "Sprint",
+          "Swift"
         ]
       }
     ],
@@ -1478,7 +1279,9 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "Sprint"
+          "Alto",
+          "Sprint",
+          "Swift"
         ]
       }
     ],
@@ -1528,14 +1331,12 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "Alto",
           "Aveo",
           "Captiva",
           "Onix",
           "Optra",
           "Sail",
-          "Spark",
-          "Spark GT"
+          "Spark"
         ]
       }
     ],
@@ -1564,7 +1365,6 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "D-Max",
           "LUV",
           "Trooper"
         ]
@@ -1591,7 +1391,6 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "D-Max",
           "LUV",
           "Trooper",
           "Vitara"
@@ -1646,8 +1445,7 @@
       {
         "brand": "chevrolet",
         "lines": [
-          "D-Max",
-          "LUV"
+          "D-Max"
         ]
       }
     ],
@@ -1812,15 +1610,14 @@
     "ref": "GP-HYKIA-LR",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/R",
-    "description": "Atos I/II; Eko Taxi I/II; Picanto I / Picanto II Morning. Kia Ion agrupado PDF con Picanto/EkoTaxi.",
+    "description": "Atos; Kia Picanto / Eko Taxi / Ion / Morning (sección PDF conjunta).",
     "image": "assets/productos/gpfu-hykia-03.png",
     "pdfPage": 9,
     "fits": [
       {
         "brand": "hyundai",
         "lines": [
-          "Atos",
-          "Eko Taxi"
+          "Atos"
         ]
       },
       {
@@ -1841,6 +1638,7 @@
       "Atos",
       "Eko Taxi",
       "Ion",
+      "Morning",
       "Picanto"
     ],
     "material": "100% caucho"
@@ -1850,15 +1648,14 @@
     "ref": "GP-HYKIA-LC",
     "type": "guardapolvos",
     "title": "G/Polvo eje L/C",
-    "description": "Atos I/II; Eko Taxi I/II; Picanto I / II Morning. Kia Ion agrupado PDF con Picanto/EkoTaxi.",
+    "description": "Atos; Kia Picanto / Eko Taxi / Ion / Morning (sección PDF conjunta).",
     "image": "assets/productos/gpfu-hykia-04.png",
     "pdfPage": 9,
     "fits": [
       {
         "brand": "hyundai",
         "lines": [
-          "Atos",
-          "Eko Taxi"
+          "Atos"
         ]
       },
       {
@@ -1879,6 +1676,7 @@
       "Atos",
       "Eko Taxi",
       "Ion",
+      "Morning",
       "Picanto"
     ],
     "material": "100% caucho"
@@ -1921,17 +1719,20 @@
     "desc": "Maquila según pieza o ficha. B2B Bogotá."
   }
 ],
-    waMessage(p) {
-      if (!p) return "Hola, quiero cotizar repuestos Vencedores Autopartes";
-      var bits = [];
-      if (p.ref) bits.push("Ref " + p.ref);
-      if (p.title) bits.push(p.title);
-      if (p.type) bits.push("tipo " + p.type);
-      return "Hola, quiero cotizar: " + bits.join(" — ");
+    waMessage(product) {
+      /* Prefill por línea (biblia) — no por CV/ref */
+      if (!product || !product.type) return "Hola estoy muy interesado en sus productos.";
+      if (product.type === "pedales") return "Hola estoy muy interesado en sus productos. Pedales";
+      if (product.type === "guardapolvos" || product.type === "fuelles")
+        return "Hola estoy muy interesado en sus productos. Guardapolvos y fuelles";
+      if (product.type === "bujes") return "Hola estoy muy interesado en sus productos. Mezclas";
+      return "Hola estoy muy interesado en sus productos.";
     },
-    typeLabel(typeId) {
-      var t = this.getType(typeId);
-      return t ? t.name : typeId || "general";
+    waLineForType(typeId) {
+      if (typeId === "pedales") return "pedales";
+      if (typeId === "guardapolvos" || typeId === "fuelles") return "fuelles";
+      if (typeId === "bujes") return "mezclas";
+      return "general";
     },
     waUrl(msg) {
       return "https://wa.me/" + this.waNumber + "?text=" + encodeURIComponent(msg || this.waMessage(null));
@@ -1952,8 +1753,6 @@
       });
     },
     linesFor(brandId) {
-      var b = this.getBrand(brandId);
-      if (b && b.lines && b.lines.length) return b.lines;
       return this.brandLines[brandId] || [];
     },
     typesFor(brandId, line) {
