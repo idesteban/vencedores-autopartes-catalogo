@@ -79,15 +79,24 @@
 
   function shortcutChipsHtml() {
     const chips = [
+      { id: "marcas", label: "MARCAS", primary: true },
       { id: "pedales", label: "PEDALES" },
       { id: "guardapolvos", label: "GUARDAPOLVOS" },
       { id: "bujes", label: "BUJES" },
       { id: "fuelles", label: "FUELLES" },
     ];
+    const marcasActive = state.step === "brands" && !state.typeFirst;
     return (
-      '<div class="type-shortcuts" role="group" aria-label="Atajos por tipo">' +
+      '<div class="type-shortcuts" role="group" aria-label="Atajos tienda">' +
       chips
         .map(function (c) {
+          if (c.id === "marcas") {
+            return (
+              '<button type="button" class="type-chip type-chip-marcas' +
+              (marcasActive ? " active" : "") +
+              '" data-type-shortcut="marcas">MARCAS</button>'
+            );
+          }
           const active = state.typeFirst === c.id || (state.step === "products" && state.type === c.id && !state.brand);
           return (
             '<button type="button" class="type-chip' +
@@ -130,7 +139,20 @@
   function bindShortcuts(root) {
     (root || document).querySelectorAll("[data-type-shortcut]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        startTypeFirst(btn.getAttribute("data-type-shortcut"));
+        const id = btn.getAttribute("data-type-shortcut");
+        if (id === "marcas") {
+          state.typeFirst = null;
+          state.brand = null;
+          state.line = null;
+          state.type = null;
+          state.product = null;
+          state.step = "brands";
+          render();
+          const tienda = document.getElementById("tienda");
+          if (tienda) tienda.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        startTypeFirst(id);
       });
     });
   }

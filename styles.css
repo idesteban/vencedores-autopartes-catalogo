@@ -350,3 +350,19 @@ footer .container {
 .funnel-bar{flex-wrap:wrap;gap:.5rem;align-items:center}
 .funnel-bar-shortcuts{flex:1 1 100%;order:3}
 .funnel-bar-shortcuts .type-shortcuts{margin:0}
+
+.type-chip-marcas {
+  background: #fff !important;
+  color: var(--blue-deep, #050B61) !important;
+  border: 2px solid #fff !important;
+  font-size: .88rem !important;
+  padding: .55rem 1rem !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  order: -1;
+}
+.type-chip-marcas.active {
+  background: #FBBF24 !important;
+  color: #050B61 !important;
+  border-color: #FBBF24 !important;
+}
+.type-shortcuts { display:flex; flex-wrap:wrap; gap:.45rem; align-items:center; }
