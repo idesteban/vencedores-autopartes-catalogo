@@ -116,7 +116,7 @@
         <div class="section-head">
           <span class="eyebrow">3 · Tienda por marca</span>
           <h2 id="h-tienda">Busca por marca, modelo o tipo de pieza</h2>
-          <p>Tarjetas promocionales por marca y listado de referencias reales del catálogo (CV, guardapolvos, fuelles y mezclas). Sin precios en web — cotiza por WhatsApp.</p>
+          <p>Flyers estilo promocional por vehículo/marca (foto real + refs VA) y buscador fuzzy. Sin precios en web — cotiza por WhatsApp Jacobo +57 311 456 0990.</p>
         </div>
 
         <div class="tienda-search" id="tiendaSearchBar" role="search">
@@ -138,6 +138,15 @@
         </div>
 
         <p class="tienda-meta" id="tiendaMeta" aria-live="polite"></p>
+
+        <h3 class="tienda-subh">Flyers por vehículo / marca</h3>
+        <p class="tienda-hint muted">Tarjetas promocionales con foto real del vehículo y solo referencias del catálogo VA. Clic para abrir el flyer.</p>
+        <div class="flyer-card-grid" id="flyerCardGrid"></div>
+
+        <div class="flyer-detail" id="flyerDetail" hidden>
+          <div class="flyer" id="flyerPanel" role="region" aria-labelledby="flyerTitle"></div>
+          <button type="button" class="btn btn-ghost btn-sm flyer-close" id="flyerClose">Cerrar flyer</button>
+        </div>
 
         <h3 class="tienda-subh">Marcas</h3>
         <div class="brand-grid" id="brandGrid"></div>

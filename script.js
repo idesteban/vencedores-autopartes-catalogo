@@ -1,6 +1,6 @@
 (function () {
   const DEFAULT_WA = "573114560990";
-  const catalog = window.VA_CATALOG || { brands: [], products: [], waLines: {}, waNumber: DEFAULT_WA };
+  const catalog = window.VA_CATALOG || { brands: [], products: [], flyers: [], waLines: {}, waNumber: DEFAULT_WA };
   const WA = catalog.waNumber || DEFAULT_WA;
   const waLines = catalog.waLines || {};
 
@@ -372,7 +372,183 @@
     });
   }
 
+  const flyerCardGrid = document.getElementById("flyerCardGrid");
+  const flyerDetail = document.getElementById("flyerDetail");
+  const flyerPanel = document.getElementById("flyerPanel");
+  const flyerClose = document.getElementById("flyerClose");
+  let activeFlyerId = "";
+
+  const BENEFITS = [
+    { icon: "◆", label: "Alta durabilidad" },
+    { icon: "◎", label: "Ajuste perfecto" },
+    { icon: "★", label: "Calidad VA" },
+    { icon: "➤", label: "Envíos Colombia" },
+  ];
+
+  function productMatchesFlyer(p, flyer) {
+    if (p.type === "mezcla") return false;
+    const pm = flyer.productMatch || {};
+    const brands = pm.brands || [];
+    const keys = (pm.modelKeywords || []).map(normalize);
+    const refs = (pm.includeRefs || []).map(function (r) { return normalize(r); });
+
+    const brandHit =
+      !brands.length ||
+      brands.some(function (b) {
+        const bf = normalize(b);
+        return normalize(p.brand) === bf || (p.brands || []).some(function (x) { return normalize(x) === bf; });
+      });
+    if (!brandHit) return false;
+
+    // Brand overview: all products of that brand
+    if (flyer.isBrandOverview) return true;
+
+    if (refs.length && refs.indexOf(normalize(p.ref)) >= 0) return true;
+
+    if (!keys.length) return brandHit;
+
+    const hay = productHaystack(p);
+    return keys.some(function (k) { return k && hay.indexOf(k) >= 0; });
+  }
+
+  function productsForFlyer(flyer) {
+    const list = catalog.products.filter(function (p) { return productMatchesFlyer(p, flyer); });
+    // Prefer includeRefs order first
+    const refs = (flyer.productMatch && flyer.productMatch.includeRefs) || [];
+    const order = {};
+    refs.forEach(function (r, i) { order[normalize(r)] = i; });
+    return list.sort(function (a, b) {
+      const ia = order.hasOwnProperty(normalize(a.ref)) ? order[normalize(a.ref)] : 999;
+      const ib = order.hasOwnProperty(normalize(b.ref)) ? order[normalize(b.ref)] : 999;
+      if (ia !== ib) return ia - ib;
+      return a.ref.localeCompare(b.ref, "es");
+    });
+  }
+
+  function flyerImageSrc(flyer) {
+    const src = flyer.heroImage || "";
+    // fallback chain for missing files handled by onerror in HTML
+    return src;
+  }
+
+  function waMsgFlyerProduct(p, flyer) {
+    const line = waLines[p.waLine] || waLines.general || "Hola estoy muy interesado en sus productos.";
+    return line + " — Modelo " + (flyer.modelsLabel || flyer.brand) + " — Ref " + p.ref + ": " + p.title;
+  }
+
+  function waMsgFlyerCta(flyer) {
+    return "Hola, soy almacén. Quiero cotizar repuestos VA para " + (flyer.modelsLabel || flyer.brand) + " (" + flyer.brand + "). WhatsApp Jacobo.";
+  }
+
+  function renderFlyerCards() {
+    if (!flyerCardGrid) return;
+    const q = (queryEl && queryEl.value) || "";
+    let brandFilter = (brandEl && brandEl.value) || "";
+    if (activeBrandId) {
+      const b = catalog.brands.find(function (x) { return x.id === activeBrandId; });
+      if (b) brandFilter = b.name;
+    }
+    const flyers = catalog.flyers || [];
+    const qn = normalize(q);
+    const bf = normalize(brandFilter);
+
+    flyerCardGrid.innerHTML = "";
+    flyers.forEach(function (f) {
+      if (bf && normalize(f.brand) !== bf && normalize(f.brandId || "") !== bf) return;
+      if (qn) {
+        const hay = normalize([f.brand, f.title, f.modelsLabel, (f.models || []).join(" "), f.slogan || ""].join(" "));
+        if (hay.indexOf(qn) < 0 && !expandTokens(q).some(function (t) { return hay.indexOf(t) >= 0; })) return;
+      }
+      const prods = productsForFlyer(f);
+      if (!prods.length) return;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "flyer-card" + (activeFlyerId === f.id ? " is-active" : "");
+      btn.setAttribute("data-flyer-id", f.id);
+      const img = flyerImageSrc(f);
+      btn.innerHTML =
+        '<div class="flyer-card-thumb">' +
+        (img
+          ? '<img src="' + escapeHtml(img) + '" alt="' + escapeHtml(f.heroAlt || f.brand) + '" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.classList.add(\'no-img\')">'
+          : "") +
+        '<span class="flyer-card-badge">' + escapeHtml(f.brand) + "</span></div>" +
+        '<div class="flyer-card-body"><strong>' + escapeHtml(f.modelsLabel || f.brand) + "</strong>" +
+        '<span class="flyer-card-count">' + prods.length + " ref" + (prods.length === 1 ? "" : "s") + "</span></div>";
+      btn.addEventListener("click", function () { openFlyer(f.id); });
+      flyerCardGrid.appendChild(btn);
+    });
+  }
+
+  function openFlyer(id) {
+    const flyer = (catalog.flyers || []).find(function (f) { return f.id === id; });
+    if (!flyer || !flyerPanel || !flyerDetail) return;
+    activeFlyerId = id;
+    const prods = productsForFlyer(flyer);
+    const benefits = BENEFITS.map(function (b) {
+      return '<div class="flyer-benefit"><span class="flyer-benefit-icon" aria-hidden="true">' + b.icon +
+        '</span><span>' + escapeHtml(b.label) + "</span></div>";
+    }).join("");
+
+    const cells = prods.map(function (p) {
+      const models = (p.models || []).slice(0, 5).map(function (m) {
+        return "<span>" + escapeHtml(m) + "</span>";
+      }).join("");
+      const more = (p.models || []).length > 5 ? "<span>+" + ((p.models || []).length - 5) + "</span>" : "";
+      const msg = waMsgFlyerProduct(p, flyer);
+      return (
+        '<article class="flyer-prod">' +
+        '<div class="flyer-prod-top"><span class="tp-type is-' + escapeHtml(p.type) + '">' + escapeHtml(typeLabel(p.type)) +
+        '</span><span class="flyer-prod-ref">' + escapeHtml(p.ref) + "</span></div>" +
+        "<h4>" + escapeHtml(p.title) + "</h4>" +
+        '<div class="tp-models">' + models + more + "</div>" +
+        '<a class="btn btn-wa btn-sm" href="' + waUrl(msg) + '" target="_blank" rel="noopener noreferrer">' +
+        WA_ICON + " Cotizar " + escapeHtml(p.ref) + "</a></article>"
+      );
+    }).join("");
+
+    const caption = flyer.heroCaption
+      ? '<p class="flyer-hero-caption">' + escapeHtml(flyer.heroCaption) + "</p>"
+      : "";
+    const ctaMsg = waMsgFlyerCta(flyer);
+
+    flyerPanel.innerHTML =
+      '<div class="flyer-hero">' +
+      '<div class="flyer-hero-copy">' +
+      '<p class="flyer-brand">' + escapeHtml(flyer.brand) + " · Vencedores Autopartes</p>" +
+      '<h2 id="flyerTitle">' + escapeHtml(flyer.title) + "</h2>" +
+      '<p class="flyer-slogan">' + escapeHtml(flyer.slogan || "") + "</p>" +
+      '<p class="flyer-splash">Pedales · Guardapolvos · Fuelles — fabricados en caucho VA</p>' +
+      "</div>" +
+      '<div class="flyer-hero-photo">' +
+      (flyer.heroImage
+        ? '<img src="' + escapeHtml(flyerImageSrc(flyer)) + '" alt="' + escapeHtml(flyer.heroAlt || flyer.brand) +
+          '" onerror="this.parentNode.classList.add(\'no-img\');this.remove()">'
+        : "") +
+      caption +
+      "</div></div>" +
+      '<div class="flyer-benefits">' + benefits + "</div>" +
+      '<div class="flyer-grid">' + (cells || '<p class="muted">Sin referencias en catálogo para este flyer.</p>') + "</div>" +
+      '<div class="flyer-cta">' +
+      '<div><strong>Cotiza con Jacobo</strong><p>WhatsApp +57 311 456 0990 · Envíos Colombia (origen Bosa)</p></div>' +
+      '<a class="btn btn-wa" href="' + waUrl(ctaMsg) + '" target="_blank" rel="noopener noreferrer">' +
+      WA_ICON + " WhatsApp 311 456 0990</a></div>";
+
+    flyerDetail.hidden = false;
+    renderFlyerCards();
+    flyerDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function closeFlyer() {
+    activeFlyerId = "";
+    if (flyerDetail) flyerDetail.hidden = true;
+    if (flyerPanel) flyerPanel.innerHTML = "";
+    renderFlyerCards();
+  }
+
+  flyerClose && flyerClose.addEventListener("click", closeFlyer);
+
   function renderAll() {
+    renderFlyerCards();
     renderBrands();
     renderProducts();
   }
@@ -381,13 +557,14 @@
     const name = (brandEl && brandEl.value) || "";
     const b = catalog.brands.find(function (x) { return x.name === name; });
     activeBrandId = b ? b.id : "";
+    closeFlyer();
     renderAll();
   }
 
   if (brandGrid && productGrid) {
     populateBrandSelect();
     renderAll();
-    queryEl && queryEl.addEventListener("input", function () { renderProducts(); });
+    queryEl && queryEl.addEventListener("input", function () { renderFlyerCards(); renderProducts(); });
     typeEl && typeEl.addEventListener("change", function () { renderProducts(); });
     brandEl && brandEl.addEventListener("change", syncBrandFromSelect);
     clearBtn && clearBtn.addEventListener("click", function () {
@@ -395,6 +572,7 @@
       if (brandEl) brandEl.value = "";
       if (typeEl) typeEl.value = "";
       activeBrandId = "";
+      closeFlyer();
       renderAll();
       queryEl && queryEl.focus();
     });

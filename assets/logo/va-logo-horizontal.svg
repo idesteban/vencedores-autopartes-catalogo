@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 96" role="img" aria-label="Vencedores Autopartes">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F6D27A"/>
+      <stop offset="50%" stop-color="#D4A017"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#C8CDD2"/>
+      <stop offset="100%" stop-color="#8A9098"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield mark (simplified for UI / favicon source) -->
+  <g transform="translate(8,8)">
+    <path d="M40 4 L72 16 L72 48 Q72 68 40 80 Q8 68 8 48 L8 16 Z" fill="#0B0B0C" stroke="url(#gold)" stroke-width="3.5"/>
+    <!-- gear -->
+    <circle cx="24" cy="38" r="9" fill="none" stroke="url(#gold)" stroke-width="2.2"/>
+    <circle cx="24" cy="38" r="3.2" fill="#D4A017"/>
+    <!-- pedal -->
+    <rect x="34" y="30" width="14" height="18" rx="2" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <circle cx="38" cy="35" r="1.2" fill="#D4A017"/>
+    <circle cx="44" cy="35" r="1.2" fill="#D4A017"/>
+    <circle cx="38" cy="41" r="1.2" fill="#D4A017"/>
+    <circle cx="44" cy="41" r="1.2" fill="#D4A017"/>
+    <circle cx="38" cy="47" r="1.2" fill="#D4A017"/>
+    <circle cx="44" cy="47" r="1.2" fill="#D4A017"/>
+    <!-- mill -->
+    <rect x="52" y="32" width="14" height="16" rx="1.5" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <rect x="55" y="35" width="8" height="4" rx="1" fill="#2A2A2C"/>
+    <rect x="55" y="42" width="8" height="4" rx="1" fill="#2A2A2C"/>
+  </g>
+  <g font-family="Inter, system-ui, sans-serif">
+    <text x="96" y="48" font-size="30" font-weight="700" letter-spacing="1" fill="url(#chrome)">VENCEDORES</text>
+    <text x="96" y="74" font-size="14" font-weight="600" letter-spacing="4" fill="url(#gold)">AUTOPARTES</text>
+  </g>
+</svg>
