@@ -180,13 +180,13 @@
       '<div class="brand-grid">' +
       C.brands
         .map(function (b) {
-          const logo = b.logo
-            ? '<div class="brand-logo-wrap"><img class="brand-logo" src="' +
-              escapeHtml(b.logo) +
-              '" alt="' +
-              escapeHtml(b.name) +
-              '" loading="lazy" width="120" height="134"></div>'
-            : '<div class="brand-mono" aria-hidden="true">' + escapeHtml(b.monogram || "?") + "</div>";
+          const logoSrc = b.logo || ("assets/marcas/" + b.id + ".png");
+          const logo =
+            '<div class="brand-logo-wrap"><img class="brand-logo" src="' +
+            escapeHtml(logoSrc) +
+            '" alt="' +
+            escapeHtml(b.name) +
+            '" loading="lazy" width="120" height="64"></div>';
           return (
             '<button type="button" class="brand-card" data-brand="' +
             b.id +
@@ -318,9 +318,14 @@
       list = C.productsFor(state.brand, state.line, state.type);
     }
     if (!list.length) {
+      const typeForWa = state.type || state.typeFirst;
       el.body.innerHTML =
         shortcutChipsHtml() +
-        '<div class="empty-state"><p>Sin productos en este filtro.</p></div>';
+        '<div class="empty-state"><p>Sin productos en este filtro. Cotice por WhatsApp.</p><a class="btn btn-wa" target="_blank" rel="noopener" href="' +
+        C.waUrl(C.waMessage({ type: typeForWa })) +
+        '">' +
+        WA_ICON +
+        " Consultar por WhatsApp</a></div>";
       bindShortcuts(el.body);
       return;
     }

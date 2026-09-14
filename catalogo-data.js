@@ -1643,8 +1643,19 @@
   }
 ],
     waMessage(product) {
-      if (!product) return "Hola estoy muy interesado en sus productos.";
-      return "Hola, quiero cotizar " + product.title + " (ref " + product.ref + ").";
+      /* Prefill por línea (biblia) — no por CV/ref */
+      if (!product || !product.type) return "Hola estoy muy interesado en sus productos.";
+      if (product.type === "pedales") return "Hola estoy muy interesado en sus productos. Pedales";
+      if (product.type === "guardapolvos" || product.type === "fuelles")
+        return "Hola estoy muy interesado en sus productos. Guardapolvos y fuelles";
+      if (product.type === "bujes") return "Hola estoy muy interesado en sus productos. Mezclas";
+      return "Hola estoy muy interesado en sus productos.";
+    },
+    waLineForType(typeId) {
+      if (typeId === "pedales") return "pedales";
+      if (typeId === "guardapolvos" || typeId === "fuelles") return "fuelles";
+      if (typeId === "bujes") return "mezclas";
+      return "general";
     },
     waUrl(msg) {
       return "https://wa.me/" + this.waNumber + "?text=" + encodeURIComponent(msg || this.waMessage(null));
