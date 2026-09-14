@@ -29,6 +29,7 @@
         <ul class="nav-links">
           <li><a href="#nosotros">Quiénes somos</a></li>
           <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#tienda">Tienda</a></li>
           <li><a href="#catalogo">Catálogo</a></li>
           <li><a href="#descargas">Descargas</a></li>
           <li><a href="#contacto">Contacto</a></li>
@@ -41,6 +42,7 @@
   <div class="nav-drawer" id="navDrawer">
     <a href="#nosotros">Quiénes somos</a>
     <a href="#servicios">Servicios</a>
+    <a href="#tienda">Tienda por marca</a>
     <a href="#catalogo">Catálogo</a>
     <a href="#descargas">Descargar catálogos</a>
     <a href="#contacto">Contacto</a>
@@ -108,10 +110,52 @@
     </section>
 
     
+
+    <section class="section" id="tienda" aria-labelledby="h-tienda">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">3 · Tienda por marca</span>
+          <h2 id="h-tienda">Busca por marca, modelo o tipo de pieza</h2>
+          <p>Tarjetas promocionales por marca y listado de referencias reales del catálogo (CV, guardapolvos, fuelles y mezclas). Sin precios en web — cotiza por WhatsApp.</p>
+        </div>
+
+        <div class="tienda-search" id="tiendaSearchBar" role="search">
+          <label class="sr-only" for="tiendaQuery">Buscar producto</label>
+          <input type="search" id="tiendaQuery" class="tienda-input" placeholder="Ej. Duster, pedal Aveo, fuelle dirección, Logan…" autocomplete="off">
+          <label class="sr-only" for="tiendaBrand">Marca</label>
+          <select id="tiendaBrand" class="tienda-select" aria-label="Filtrar por marca">
+            <option value="">Todas las marcas</option>
+          </select>
+          <label class="sr-only" for="tiendaType">Tipo</label>
+          <select id="tiendaType" class="tienda-select" aria-label="Filtrar por tipo">
+            <option value="">Todos</option>
+            <option value="pedal">Pedales</option>
+            <option value="guardapolvo">Guardapolvos</option>
+            <option value="fuelle">Fuelles</option>
+            <option value="mezcla">Mezclas</option>
+          </select>
+          <button type="button" class="btn btn-ghost btn-sm" id="tiendaClear">Limpiar</button>
+        </div>
+
+        <p class="tienda-meta" id="tiendaMeta" aria-live="polite"></p>
+
+        <h3 class="tienda-subh">Marcas</h3>
+        <div class="brand-grid" id="brandGrid"></div>
+
+        <h3 class="tienda-subh" id="productResultsTitle">Productos</h3>
+        <div class="tienda-product-grid" id="productGrid"></div>
+        <div class="tienda-empty card" id="tiendaEmpty" hidden>
+          <p><strong>No encontramos coincidencias</strong> con ese filtro.</p>
+          <p class="muted">Prueba otra marca, un modelo cercano o escríbenos por WhatsApp con la referencia.</p>
+          <a href="https://wa.me/573114560990?text=Hola%20estoy%20muy%20interesado%20en%20sus%20productos." target="_blank" rel="noopener noreferrer" data-wa-msg="Hola estoy muy interesado en sus productos." class="btn btn-wa btn-sm">Consultar por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="catalogo" aria-labelledby="h-catalogo">
       <div class="container">
         <div class="section-head" id="pedales">
-          <span class="eyebrow">3 · Catálogo · Pedales</span>
+          <span class="eyebrow">4 · Catálogo · Pedales</span>
           <h2 id="h-catalogo">Juegos de pedales (freno, embrague y acelerador)</h2>
           <p>Consulta el catálogo PDF (referencias CV). Las fotos sueltas / empaques están en auditoría y no se muestran aquí para evitar duplicados.</p>
         </div>
@@ -157,7 +201,7 @@
 <section class="section" id="guardapolvos" aria-labelledby="h-guarda" style="padding-top:0">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">3 · Catálogo · Fuelles</span>
+          <span class="eyebrow">4 · Catálogo · Fuelles</span>
           <h2 id="h-guarda">Guardapolvos y fuelles</h2>
           <p>Líneas agrupadas. Indique marca, modelo y lado (L/C o L/R) por WhatsApp.</p>
         </div>
@@ -193,7 +237,7 @@
     <section class="section" id="mezclas" aria-labelledby="h-mezclas">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">3 · Catálogo · Mezclas</span>
+          <span class="eyebrow">4 · Catálogo · Mezclas</span>
           <h2 id="h-mezclas">Mezclas y compuestos de caucho</h2>
           <p>Molino propio. Cotiza cada compuesto por WhatsApp — sin precios en la web.</p>
         </div>
@@ -324,6 +368,7 @@
     <img id="lightboxImg" alt="">
   </div>
 
+  <script src="catalogo-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
