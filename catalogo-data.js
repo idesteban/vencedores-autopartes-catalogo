@@ -1,4 +1,4 @@
-// cache 20260914n
+// cache 20260914r
 /**
  * Vencedores Autopartes — embudo marca → línea → tipo → producto
  * brandLines: INR Catalogodepartes.pdf 2025 (no encoger).
@@ -2113,7 +2113,13 @@
       });
     },
     linesFor(brandId) {
-      return this.brandLines[brandId] || [];
+      var self = this;
+      var lines = this.brandLines[brandId] || [];
+      return lines.filter(function (line) {
+        return self.productsFor(brandId, line, null).some(function (p) {
+          return p.type === "pedales" || p.type === "guardapolvos" || p.type === "fuelles" || p.type === "bujes";
+        });
+      });
     },
     typesFor(brandId, line) {
       var set = {};
