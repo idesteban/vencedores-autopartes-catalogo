@@ -1,3 +1,4 @@
+// cache 20260914g
 /**
  * Vencedores Autopartes — embudo marca → línea → tipo → producto
  * Fuente: REF_CATALOGO_USUARIO.pdf (20 págs). Sin inventos fuera del PDF.
@@ -892,7 +893,7 @@
     "type": "fuelles",
     "title": "Fuelle caja dirección",
     "description": "R4 Master/Líder (86/92); R18 GTL/TS.",
-    "image": "assets/productos/gpfu-ren-07.png",
+    "image": "assets/productos/fu-ren-r4.png",
     "pdfPage": 4,
     "fits": [
       {
@@ -918,7 +919,7 @@
     "type": "fuelles",
     "title": "Fuelle caja dirección",
     "description": "R9 1.3/1.4/1.6; Twingo I/II.",
-    "image": "assets/productos/gpfu-ren-08.png",
+    "image": "assets/productos/fu-ren-r9.png",
     "pdfPage": 4,
     "fits": [
       {
@@ -944,7 +945,7 @@
     "type": "fuelles",
     "title": "Fuelle caja dirección",
     "description": "Clio I/II/Campus/Style; Express Taxi; Kangoo; Megane I; Scenic I; Citius; Symbol I/II.",
-    "image": "assets/productos/gpfu-ren-09.png",
+    "image": "assets/productos/fu-ren-clio.png",
     "pdfPage": 4,
     "fits": [
       {
@@ -1150,7 +1151,7 @@
     "type": "fuelles",
     "title": "Fuelle caja dirección lado pasajero",
     "description": "Alto; Sprint SA310; Swift 1.0/1.3/1.6.",
-    "image": "assets/productos/gpfu-chev-07.png",
+    "image": "assets/productos/fu-chev-pas.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1178,7 +1179,7 @@
     "type": "fuelles",
     "title": "Fuelle caja dirección lado conductor LH",
     "description": "Alto; Sprint SA310; Swift 1.0/1.3/1.6.",
-    "image": "assets/productos/gpfu-chev-08.png",
+    "image": "assets/productos/fu-chev-lh.png",
     "pdfPage": 5,
     "fits": [
       {
@@ -1442,7 +1443,7 @@
     "type": "fuelles",
     "title": "Fuelle caja dirección COD 32113 / REF GJ2232125",
     "description": "MX-6 2.0 16v (93/97).",
-    "image": "assets/productos/gpfu-maz-04.png",
+    "image": "assets/productos/fu-maz-32113.png",
     "pdfPage": 8,
     "fits": [
       {
@@ -1579,32 +1580,7 @@
       "Picanto"
     ],
     "material": "100% caucho"
-  },
-  {
-    "id": "fu-hyu-i10",
-    "ref": "FU-HYU-I10",
-    "type": "fuelles",
-    "title": "Fuelle de dirección Hyundai i10",
-    "description": "Hyundai i10.",
-    "image": "assets/productos/gpfu-hykia-05.png",
-    "pdfPage": 9,
-    "fits": [
-      {
-        "brand": "hyundai",
-        "lines": [
-          "i10"
-        ]
-      }
-    ],
-    "brands": [
-      "hyundai"
-    ],
-    "lines": [
-      "i10"
-    ],
-    "material": "100% caucho"
-  }
-],
+  }],
     mezclas: [
   {
     "id": "mez-bujes",

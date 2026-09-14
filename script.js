@@ -18,6 +18,7 @@
     body: document.getElementById("funnelBody"),
     crumbs: document.getElementById("funnelCrumbs"),
     back: document.getElementById("funnelBack"),
+    fwd: document.getElementById("funnelFwd"),
     lightbox: document.getElementById("lightbox"),
     lightboxImg: document.getElementById("lightboxImg"),
   };
@@ -465,6 +466,7 @@
   function render() {
     renderCrumbs();
     renderBarExtras();
+    if (el.fwd) el.fwd.hidden = true;
     if (state.step === "brands") renderBrands();
     else if (state.step === "lines") renderLines();
     else if (state.step === "types") renderTypes();

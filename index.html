@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/va-favicon-v-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/va-favicon-v-64.png">
   <link rel="apple-touch-icon" sizes="192x192" href="assets/logo/va-icon-app-v-192.png">
-  <link rel="stylesheet" href="styles.css?v=20260914f">
+  <link rel="stylesheet" href="styles.css?v=20260914g">
 </head>
 <body>
   <header class="site-header">
@@ -60,6 +60,15 @@
               <a class="btn btn-ghost" href="#tienda">Ir a la tienda →</a>
             </div>
           </div>
+          <figure class="card about-mill-card">
+            <div class="about-mill">
+              <img src="assets/fotos/molino-mezclas.png" alt="Molino mezclador de caucho — Vencedores Autopartes, Bosa" width="2400" height="1600" loading="lazy">
+              <div class="about-mill-overlay">
+                <span>MEZCLA DE CAUCHOS Y REPUESTOS EN CAUCHO</span>
+              </div>
+            </div>
+            <figcaption class="about-caption mill-caption-inline">Molino propio en planta · Bosa, Bogotá</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -74,9 +83,12 @@
         <div class="funnel-shell">
           <div class="funnel-bar">
             <div class="funnel-crumbs" id="funnelCrumbs" aria-label="Ruta de navegación"></div>
-            <button type="button" class="funnel-back" id="funnelBack" hidden>← Atrás</button>
           </div>
           <div class="funnel-body" id="funnelBody" aria-live="polite"></div>
+          <div class="funnel-nav" id="funnelNav">
+            <button type="button" class="funnel-back" id="funnelBack" hidden>← Atrás</button>
+            <button type="button" class="funnel-fwd" id="funnelFwd" hidden>Avanzar →</button>
+          </div>
         </div>
       </div>
     </section>
@@ -88,12 +100,6 @@
           <h2 id="h-mezclas">Mezclas y compuestos</h2>
           <p>Molino propio. Realizamos mezclas en caucho para bujes, guardapolvos, diafragmas, fuelles y más. Especiales nitrilo y caucho de color.</p>
         </div>
-        <figure class="card mill-photo-card">
-          <div class="mill-photo">
-            <img src="assets/fotos/molino-mezclas.png" alt="Molino mezclador de caucho — Vencedores Autopartes, Bosa" width="2400" height="1600" loading="lazy">
-          </div>
-          <figcaption class="mill-caption">Molino propio en planta · Mezclas de caucho · Bosa, Bogotá</figcaption>
-        </figure>
         <div class="mezclas" id="mezclasGrid"></div>
       </div>
     </section>
@@ -183,7 +189,7 @@
     <img id="lightboxImg" alt="">
   </div>
 
-  <script src="catalogo-data.js?v=20260914f"></script>
+  <script src="catalogo-data.js?v=20260914g"></script>
   <script>
     (function () {
       var C = window.VA_CATALOG;
@@ -197,6 +203,6 @@
       }).join("");
     })();
   </script>
-  <script src="script.js?v=20260914f"></script>
+  <script src="script.js?v=20260914g"></script>
 </body>
 </html>

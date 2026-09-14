@@ -1,0 +1,274 @@
+                                 G/POLVO EJE L/C JUNTA TIPO
+                                 HOMOCINETICA
+                                 - R4 [MASTER/LIDER] (86/92)
+                                 - R9 1.3cc/1.4cc/1.6cc (86/99)
+
+
+
+
+                                  G/POLVO EJE L/R - CAÑA
+                                  GRUESA - R9 1.3cc/1.4cc
+- R9 1.3cc/1.4cc/1.6cc (86/99)    (83/85)
+
+
+
+
+                                    G/POLVO EJE L/C IZQUIERDO
+                                    ¨LH¨
+                                    - R19 1.4cc/1.6cc/1.7cc/1.8cc
+                                    (95/00)
+
+
+
+- STEPWAY I 1.6cc 16v (10-16)
+- STEPWAY II 16cc 16v (16-)
+G/POLVO EJE L/C JUNTA TIPO           G/POLVO EJE L/R JUNTA TIPO            FUELLE CAJA DIRECCIÓN
+TRICETA                              HOMOCINETICA                          - R4 [MASTER/LIDER]
+- R4 [850/PLUS] (71/85)               - R4 [MASTER/LIDER] (86/92)             (86/92)
+- R6 1.1cc/1.3cc (71/84)             - R9 1.3cc/1.4cc/1.6cc (86/99)        -   R18 GTL 1.4cc (81/84)
+-   R12 1.3cc (73/82)                                                      -   R18 TS 1.4cc (85/87)
+- R18 GTL 1.4cc (81/84)
+- R18 TS 1.4cc (85/87)                                                     FUELLE CAJA DIRECCIÓN
+- R19 1.4cc/1.6cc/1.7cc/1.8cc         G/POLVO EJE SOLO L/C                 -R9 1.3cc/1.4cc/1.6cc
+   (95/00)                            - DUSTER 1.6cc 16v 2WD / 2.0cc       (86/99)
+- CLIO I 1.4cc/1.8cc 8v (92/01)       16v 2WD (12-)                        - TWINGO I 1.2cc/1.3cc 8v
+                                      - DUSTER 1.6cc 16v 2WD               (95/05)
+G/POLVO EJE L/R JUNTA TIPO            [TRANS. MANUAL / 5                   - TWINGO II 1.2cc 16v
+TRICETA                               VELOCIDADES] (12-)                   (06/13)
+- R4 [850/PLUS] (71/85                - DUSTER 2.0cc 16v 4WD (12-)
+- R6 1.1cc/1.3cc (71/84)              - DUSTER OROCH 2.0cc 16v 2WD      FUELLE CAJA DIRECCIÓN
+-   R12 1.3cc (73/82)                 [MOTOR F4R] (16-)                 - CLIO I 1.4cc/1.8cc 8v (92/01)
+-   R18 GTL 1.4cc (81/84)                                               - CLIO II 1.4cc/1.6cc 16v (01/12)
+- R18 TS 1.4cc (85/87)                                                  - CLIO II CAMPUS 1.2cc 12v (13-)
+- R18 GTX 2.0cc (81/87)               G/POLVO EJE L/R                   - EXPRESS TAXI 1.2cc 12v (14-)
+                                      - DUSTER 1.6cc 16v 2WD / 2.0cc    - CLIO II STYLE 1.2cc 12v (13-)
+                                      16v 2WD (12-)                     - KANGOO 1.4cc 8v/1.6cc 16v
+G/POLVO EJE L/R                       - DUSTER 1.6cc 16v 2WD            - MEGANE I 1.4cc/1.6cc 16v
+- LOGAN 1.4cc/1.6cc 8v (05-16)        [TRANS. MANUAL / 5                  (99/09)
+- MEGANE II 2.0cc 16v (04/11)         VELOCIDADES] (12-)                -- SCENIC I 1.6cc/2.0cc 16v
+- SANDERO I 1.6cc 8v - 16v (09-16)    - DUSTER 2.0cc 16v 4WD (12-)      (99/11)
+- GRAND SCENIC 2.0cc 16v              - DUSTER OROCH 2.0cc 16v 2WD      - CITIUS TAXI 1.4cc 16v (06/10)
+(08/10)                               [MOTOR F4R] (16-)                 - SYMBOL I 1.4cc 8v (01/03)
+- SCENIC II 2.0cc 16v (06/09)         - FLUENCE 1.6cc 16v / 2.0cc 16v   - SYMBOL II 1.4cc/1.6cc 16v
+- STEPWAY I 1.6cc 16v (10-16)         [TRANSMISIÓN MANUAL Y             (03/10)
+                                      AUTOMÁTICA] (10/15)
+                                 G/POLVO EJE L/R
+G/POLVO EJE L/C                  - ALTO 1.0cc 16v (00/04)
+- ALTO 1.0cc 16v (00/04)         - SPARK I/7:24 [M200] 1.0cc 8v        FUELLE CAJA DIRECCIÓN
+- SPARK I/7:24 [M200] 1.0cc 8v   - SPARK II/CHRONOS [M250]1.0cc 8v     LADO PASAJERO
+- SPARK II/CHRONOS 1.0cc 8v-      - SPRINT [SA310] 1.0cc 6v            - ALTO 1.0cc 16v (00/04)
+- SWIFT 1.0cc 6v (93/96)         - SWIFT 1.0cc 6v (93/96)              - SPRINT [SA310] 1.0cc 6v (86/04)
+- SPRINT [SA310] 1.0cc 6v        - SWIFT 1.3cc 8v (91/04)              - SWIFT 1.0cc 6v (93/96)
+(86/04)                          - SWIFT 1.6cc 16v (92/96)             - SWIFT 1.3cc 8v (91/04)
+                                                                       - SWIFT 1.6cc 16v (92/96)
+
+
+G/POLVO EJE L/R                                                        FUELLE CAJA DIRECCIÓN
+                                  G/POLVO EJE L/C                      LADO CONDUCTOR [LH]
+ - AVEO [T200/T250]
+                                  - AVEO [T200/T250]                   - ALTO 1.0cc 16v (00/04)
+1.4cc/1.5cc/1.6cc (05-14)
+                                  1.4cc/1.5cc/1.6cc (05-14)            - SPRINT [SA310] 1.0cc 6v (86/04)
+- CAPTIVA 2.0cc
+                                  - OPTRA [J200]                       - SWIFT 1.0cc 6v (93/96)
+TD/2.4cc/3.0cc
+                                  1.4cc/1.6cc 16v                      - SWIFT 1.3cc 8v (91/04)
+V6/3.2cc V6/3.6cc V6 (06-)
+                                  (04/13)                              - SWIFT 1.6cc 16v (92/96)
+- OPTRA [J200] 1.4cc/1.6cc
+                                  - SAIL 1.4cc 16v (12-)
+16v(04/13)
+- SAIL 1.4cc 16v (12-)
+
+
+G/POLVO EJE L/R                    G/POLVO EJE L/C
+- CHEVY C2 1.6cc [TRANSMISION      - CHEVY C2 1.6cc [TRANSMISION
+AUTOMATICA] (05/08)                AUTOMATICA] (05/08)
+- CORSA 1.3cc 8v [1ª FASE]         - CORSA 1.3cc 8v [1ª FASE]
+(95/98)                            (95/98)
+- CORSA 1.3cc/1.4cc/1.6cc          - CORSA 1.3cc/1.4cc/1.6cc (98/05)
+(98/05)                            - CORSA DIESEL 1.7cc TAXI
+- CORSA DIESEL 1.7cc TAXI          (02/08)
+(02/08)
+FUELLE CAJA DE DIRECCIÓN
+HIDRAULICA CHEVROLET CORSA
+                             FUELLE CAJA DIRECCION IZQ CHEVROLET
+                             AVEO/SPARK/CAPTIVA/ONIX/SAIL/OPTRA - DER
+                             HIDRAULICA=SER11006
+G/POLVO EJE L/R                G/POLVO EJE L/C
+- TROOPER 2.6cc 4WD (86/96)    - TROOPER 2.6cc 4WD (86/96)
+- LUV 2200 [TFS] 4WD (98/06)   - VITARA [SE416] 1.6cc 8v 4WD/5
+- LUV 2300 [TFS] 4WD (88/02)   PUERTAS (93/00)
+- LUV 2800 [TFS] 4WD (02/05)   - VITARA [SE416] 1.6cc 8v-16v
+                               4WD/3 PUERTAS (91/14)
+                               - LUV 2200 [TFS] 4WD (98/06)
+                               - LUV 2300 [TFS] 4WD (88/02)
+                               - LUV 2800 [TFS] 4WD (02/05)
+                               - LUV 1600 [KB41] 4WD (82/89)
+
+GUARDAPOLVO EJE LADO           GUARDAPOLVO EJE LADO
+RUEDA                          CAJA
+LUV D-MAX RT-50 2.5cc TD 4WD   D-MAX RT50 2.5cc TD 4WD (14-)
+(14-)
+MAZDA
+HYUNDAI & KIA TAXI
+
+
+
+
+       Fuelle de dirección
+       Hyundai i10
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P001
+
+
+
+
+                      DISPONIBLES PARA:
+                      CHEVROLET
+                      - SPRINT
+                      - SPARK
+                      - SWIFT
+                      HYUNDAY
+                      - ACENT
+                      MAZDA 323
+                      ENTRE OTROS
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P002
+
+
+
+
+                       DISPONIBLES PARA:
+                       HYUNDAI:
+                       ATOS
+                       ACENTO
+                       ELANTRA
+                       GENESISI
+                       I30
+                       SANTA
+                       TUCSON
+                       ENTRE OTROS
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P003
+
+
+
+                       DISPONIBLES PARA:
+                       Renault Twingo
+                       R – 19 :
+                       -   Hatchback
+                       -   Cabrio
+                       -   Chamade
+                       -   Furgon
+                       Clio 1990 – 2009
+                       Espace J11
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P004
+
+
+                       DISPONIBLES PARA:
+                       RENAULT:
+                       DUSTER
+                       CAPTUR
+                       CLIO
+                       MEGANE
+                       TRAFIC
+                       SCENIC
+                       VEL SATIS
+                       KANGOO
+                       LAGUNA
+                       SPACE.
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P005
+
+
+                       DISPONIBLES PARA:
+                       HYUNDAY:
+                       ACENT
+                       VISION
+                       ELANTRA
+                       EXCEL
+                       SCOUPE
+                       TIBURÓN
+                       GETZ
+                       KIA:
+                       PICANTO
+                       LION
+                       RIO
+                       STYLUS LS
+                       CHEVROLET SPARK
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P006
+
+
+
+
+                       DISPONIBLES PARA:
+                       CHEVROLET:
+                       SAIL
+                       AVEO
+                       OPTRA
+                       ENTRE OTROS
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P007
+
+
+                    DISPONIBLES PARA:
+                    MITSUBISHI:
+                    L200
+                    PAJERO TODOS LOS MODELOS
+                    HYUNDAY
+                    ACENT
+                    ELANTRA
+                    EXCEL
+                    SCOUPE
+                    TIBURÓN
+                    Genesis Coupe
+                    Sanata
+                    Tucson
+                    i 30
+                    KIA
+                    Picanto - Rio
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P008
+
+
+
+
+                      DISPONIBLES PARA:
+                      NISSAN FRONTIER Y
+                      NAVARRA
+                      CAMIONETAS TOYOTA
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P009
+
+
+
+
+                       DISPONIBLES PARA:
+                       CAMIONETAS Chevrolet
+                       Dimax
+                       Trooper
+                       Luv
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P010
+CAUCHOS DE PEDAL FRENO Y EMBRAGUE
+         REFERENCIA: P011
+
+                      DISPONIBLES PARA:
+                      CAMIONETAS TOYOTA
+                      Land Cruiser
+                      Runner
+                      Prado
+                      Fortuner
+                      Txl
+                      Tacoma
+                      Hilux
+                      Tundra
+                      Toyota van
+                      Burbuja
+                      NISSAN FRONTIER Y
+                      NAVARRA
+                      CAMIÓNES HINO
+
